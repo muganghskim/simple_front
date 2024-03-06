@@ -12,6 +12,7 @@ import Delivery from "../pages/Product/Delivery";
 import SignIn from "../pages/User/SignIn";
 import SignUp from "../pages/User/SignUp";
 import Profile from "../pages/User/Profile";
+import CategoryInsert from "../pages/Admin/CategoryInsert";
 
 function AppRoutes() {
   return (
@@ -25,6 +26,7 @@ function AppRoutes() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/error" element={<Error />} />
         <Route path="/admin/product/insert" element={<ProductInsert />} />
+        <Route path="/admin/category/insert" element={<CategoryInsert />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />

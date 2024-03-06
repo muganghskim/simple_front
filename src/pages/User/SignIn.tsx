@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Common/Header";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { userState, isLoggedInState } from "../../recoil/atoms/auth";
 /*
   This example requires some changes to your config:
 
@@ -17,6 +19,7 @@ import axios from "axios";
   ```
 */
 export default function SignIn() {
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
   const navigate = useNavigate();
 
   const handleSubmit = async (event: any) => {
@@ -30,6 +33,11 @@ export default function SignIn() {
         "http://localhost:8096/api/login",
         data
       );
+      const { username, email, token, refreshToken } = response.data;
+      localStorage.setItem("token", token); // 로컬 스토리지에 토큰 저장
+      localStorage.setItem("email", email); // 로컬 스토리지에 email 저장
+      localStorage.setItem("refreshToken", refreshToken); // 로컬 스토리지에 리프레쉬 토큰 저장
+      setIsLoggedIn(true);
 
       alert("로그인에 성공하였습니다.");
 
