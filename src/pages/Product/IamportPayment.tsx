@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
-import { Product } from './ProductDetail';
+import React, { useEffect } from "react";
+// import { Product } from "./ProductDetail";
 
 interface IamportPaymentProps {
-  product: Product;
+  // product: Product;
+  product: any;
   pg: String;
 }
 
@@ -85,10 +86,9 @@ declare global {
 }
 
 const IamportPayment: React.FC<IamportPaymentProps> = ({ product, pg }) => {
-
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.iamport.kr/v1/iamport.js';
+    const script = document.createElement("script");
+    script.src = "https://cdn.iamport.kr/v1/iamport.js";
     script.async = true;
     document.body.appendChild(script);
 
@@ -117,7 +117,7 @@ const IamportPayment: React.FC<IamportPaymentProps> = ({ product, pg }) => {
       buyer_tel: "01012341234",
       buyer_email: "example@example",
       buyer_addr: "신사동 661-16",
-      buyer_postcode: "06018",
+      buyer_postcode: "06018"
     };
 
     /* 4. 결제 창 호출하기 */
@@ -142,21 +142,19 @@ const IamportPayment: React.FC<IamportPaymentProps> = ({ product, pg }) => {
       buyer_tel: "01012341234",
       buyer_email: "example@example",
       buyer_addr: "신사동 661-16",
-      buyer_postcode: "06018",
+      buyer_postcode: "06018"
     };
 
     /* 4. 결제 창 호출하기 */
     IMP.request_pay(data, callback);
   };
 
-
   const callback = (response: RequestPayResponse) => {
     const { success, error_msg } = response;
 
     if (success) {
-      alert('결제 성공');
+      alert("결제 성공");
       // 결제 성공 시 이후 처리 로직 작성
-
     } else {
       alert(`결제 실패: ${error_msg}`);
       // 결제 실패 시 이후 처리 로직 작성
@@ -166,17 +164,12 @@ const IamportPayment: React.FC<IamportPaymentProps> = ({ product, pg }) => {
   return (
     <>
       {pg === "kakaopay.TC0ONETIME" && (
-        <button onClick={handlePayment}>
-          카카오페이로 구매
-        </button>
+        <button onClick={handlePayment}>카카오페이로 구매</button>
       )}
       {pg === "html5_inicis.INIBillTst" && (
-        <button onClick={handlePayment1}>
-          신용카드로 구매
-        </button>
+        <button onClick={handlePayment1}>신용카드로 구매</button>
       )}
     </>
-
   );
 };
 
