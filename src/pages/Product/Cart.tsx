@@ -1,8 +1,9 @@
 import { Fragment, useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useRecoilState } from "recoil";
-import { isOpenState } from "../../recoil/atoms/cart";
+import { cartState } from "../../recoil/atoms/cart";
 import axios from "axios";
 
 interface Cart {
@@ -51,7 +52,7 @@ export default function Cart(props: any) {
   // const [open, setOpen] = useRecoilState(isOpenState);
   // const [open, setOpen] = useState(false);
   // let [isOpen, setIsOpen] = useState(true);
-  const [cart, setCart] = useState<Cart[]>([]);
+  const [cart, setCart] = useRecoilState(cartState);
   const [cartFlag, setCartFlag] = useState(false);
   const { isOpen, onClose, product } = props;
 
@@ -80,9 +81,10 @@ export default function Cart(props: any) {
       setCart(responseCart.data);
     };
 
-    console.log("cart", cart);
     getCart();
   }, [cartFlag]);
+
+  console.log("cart", cart);
 
   // 총 가격을 저장할 변수 초기화
   let totalPrice = 0;
@@ -214,12 +216,12 @@ export default function Cart(props: any) {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-6">
-                        <a
-                          href="/delivery"
+                        <Link
+                          to="/delivery"
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                           Checkout
-                        </a>
+                        </Link>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>

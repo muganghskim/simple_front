@@ -8,7 +8,8 @@ import IamportPayment from "./IamportPayment";
 import Cart from "./Cart";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { isOpenState } from "../../recoil/atoms/cart";
+import { cartState } from "../../recoil/atoms/cart";
+// import { isOpenState } from "../../recoil/atoms/cart";
 
 interface Product {
   pdNo: number;
@@ -86,6 +87,7 @@ export default function ProductDetail() {
   // const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   // const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
   const [open, setOpen] = useState(false); // 초기 상태를 false로 설정하여 카트가 보이지 않게 합니다.
+  const [cart, setCart] = useRecoilState(cartState);
   // const [open, setOpen] = useRecoilState(isOpenState);
 
   const productData = {
@@ -442,7 +444,12 @@ export default function ProductDetail() {
       </div>
 
       {open && (
-        <Cart isOpen={open} onClose={handleClose} product={product}></Cart>
+        <Cart
+          cart={cart}
+          isOpen={open}
+          onClose={handleClose}
+          product={product}
+        ></Cart>
       )}
     </>
   );

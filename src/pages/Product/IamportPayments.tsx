@@ -1,11 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import { Product } from "./ProductDetail";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { cartState } from "../../recoil/atoms/cart";
 
 interface IamportPaymentProps {
   // product: Product;
-  product: any;
+  // product: any;
+  delivery: any;
   pg: String;
+}
+
+interface orderItemDatas {
+  pdNo: number;
+  price: number;
+  quantity: number;
+  userEmail: String;
 }
 
 export interface RequestPayAdditionalParams {
@@ -86,19 +96,34 @@ declare global {
   }
 }
 
-const IamportPayment: React.FC<IamportPaymentProps> = ({ product, pg }) => {
+const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
+  const [orderItemDatas, setOrderItemDatas] = useState<orderItemDatas[]>([]);
+  const [cart, setCart] = useRecoilState(cartState);
+  const { userAddress1, userAddress2, userAddress3 } = delivery;
+
+  console.log("cart", cart);
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://cdn.iamport.kr/v1/iamport.js";
     script.async = true;
     document.body.appendChild(script);
 
+    const orderItemDatas = cart.map((item) => {
+      return {
+        pdNo: item.pdNo,
+        price: item.pdPrice,
+        quantity: item.pdQuantity,
+        userEmail: "rhgustmfrh@naver.com" // 여기에 사용자 이메일을 적절히 넣어주세요
+      };
+    });
+
+    setOrderItemDatas(orderItemDatas);
+
     return () => {
       document.body.removeChild(script);
     };
   }, []);
-
-  const { pdNo, pdName, description, pdPrice } = product;
 
   const handlePayment = () => {
     if (!window.IMP) return;
@@ -107,13 +132,20 @@ const IamportPayment: React.FC<IamportPaymentProps> = ({ product, pg }) => {
     IMP.init("imp70486607"); // 가맹점 식별코드
 
     /* 2. 결제 데이터 정의하기 */
+    const totalPrice =
+      cart.length > 0
+        ? cart.reduce((total, item) => {
+            return total + item.pdPrice * item.pdQuantity;
+          }, 0)
+        : 0;
+    const productName = cart.length > 0 ? cart[0].pdName + " 그외" : "그외";
 
     const data: RequestPayParams = {
       pg: `${pg}`,
       pay_method: "card",
       merchant_uid: `mid_${new Date().getTime()}`,
-      amount: Number(pdPrice), // '1000' -> 1000
-      name: pdName, // 상품명
+      amount: Number(totalPrice), // '1000' -> 1000
+      name: productName, // 상품명
       buyer_name: "홍길동",
       buyer_tel: "01012341234",
       buyer_email: "example@example",
@@ -132,13 +164,20 @@ const IamportPayment: React.FC<IamportPaymentProps> = ({ product, pg }) => {
     IMP.init("imp70486607"); // 가맹점 식별코드
 
     /* 2. 결제 데이터 정의하기 */
+    const totalPrice =
+      cart.length > 0
+        ? cart.reduce((total, item) => {
+            return total + item.pdPrice * item.pdQuantity;
+          }, 0)
+        : 0;
+    const productName = cart.length > 0 ? cart[0].pdName + " 그외" : "그외";
 
     const data: RequestPayParams = {
       pg: `${pg}`,
       pay_method: "card",
       merchant_uid: `mid_${new Date().getTime()}`,
-      amount: Number(pdPrice), // '1000' -> 1000
-      name: pdName, // 상품명
+      amount: Number(totalPrice), // '1000' -> 1000
+      name: productName, // 상품명
       buyer_name: "홍길동",
       buyer_tel: "01012341234",
       buyer_email: "example@example",
@@ -161,22 +200,22 @@ const IamportPayment: React.FC<IamportPaymentProps> = ({ product, pg }) => {
     userEmail: "rhgustmfrh@naver.com"
   };
 
-  // 주문 목록 생성을 위한 데이터 배열
-  const orderItemDatas = [
-    {
-      pdNo: pdNo,
-      price: pdPrice,
-      quantity: 1,
-      userEmail: "rhgustmfrh@naver.com"
-    }
-    // {
-    //   pdNo: pdNo2,
-    //   price: pdPrice2,
-    //   quantity: 1,
-    //   userEmail: "rhgustmfrh@naver.com"
-    // }
-    // 여러 개의 주문 목록 데이터를 추가할 수 있음
-  ];
+  //   // 주문 목록 생성을 위한 데이터 배열
+  //   const orderItemDatas = [
+  //     {
+  //       pdNo: pdNo,
+  //       price: pdPrice,
+  //       quantity: 1,
+  //       userEmail: "rhgustmfrh@naver.com"
+  //     }
+  //     // {
+  //     //   pdNo: pdNo2,
+  //     //   price: pdPrice2,
+  //     //   quantity: 1,
+  //     //   userEmail: "rhgustmfrh@naver.com"
+  //     // }
+  //     // 여러 개의 주문 목록 데이터를 추가할 수 있음
+  //   ];
 
   // 주문 목록 생성 요청 함수
   const createOrderItems = () => {
@@ -240,4 +279,4 @@ const IamportPayment: React.FC<IamportPaymentProps> = ({ product, pg }) => {
   );
 };
 
-export default IamportPayment;
+export default IamportPayments;
