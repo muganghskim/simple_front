@@ -398,11 +398,11 @@ export default function ProductDetail() {
                   Add to bag
                 </button>
               </form>
-              <IamportPayment product={product} pg={"kakaopay.TC0ONETIME"} />
+              {/* <IamportPayment product={product} pg={"kakaopay.TC0ONETIME"} />
               <IamportPayment
                 product={product}
                 pg={"html5_inicis.INIBillTst"}
-              />
+              /> */}
             </div>
 
             <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">

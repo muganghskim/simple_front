@@ -46,11 +46,10 @@ export default function CategoryInsert() {
         <div className="ml-64 space-y-12 pr-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base mt-5 font-semibold leading-7 text-gray-900">
-              Category
+              카테고리
             </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              This information will be displayed publicly so be careful what you
-              share.
+              품목의 카테고리를 추가할 수 있습니다.
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -61,7 +60,7 @@ export default function CategoryInsert() {
                   htmlFor="categoryName"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  category
+                  카테고리
                 </label>
                 <div className="mt-2">
                   <select
@@ -100,7 +99,7 @@ export default function CategoryInsert() {
                   htmlFor="subCategoryName"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  subcategory
+                  세부카테고리
                 </label>
                 <div className="mt-2">
                   <select
@@ -138,13 +137,13 @@ export default function CategoryInsert() {
             type="button"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
-            Cancel
+            취소
           </button>
           <button
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Save
+            저장
           </button>
         </div>
       </form>

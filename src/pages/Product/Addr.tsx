@@ -83,29 +83,49 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
     <>
       <div className="ml-64 space-y-12 pr-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <button onClick={onClickAddr}>배송지 추가</button>
+          <button
+            className="mt-8 text-base font-semibold leading-7 text-gray-900"
+            onClick={onClickAddr}
+          >
+            배송지 추가
+          </button>
+
           <input
-            id="zipNo"
-            type="text"
-            readOnly
-            value={userAddress.userAddress3}
-          />
-          <input
+            className="border-b border-gray-900/10 pb-1 ml-8 mr-8 w-72"
             id="addr"
             type="text"
+            placeholder="도로명/지번"
             readOnly
             value={userAddress.userAddress1}
             onClick={onClickAddr}
           />
+
           <input
+            className="border-b border-gray-900/10 pb-1 mr-8 w-14"
+            id="zipNo"
+            type="text"
+            placeholder="우편번호"
+            readOnly
+            value={userAddress.userAddress3}
+          />
+
+          <input
+            className="border-b border-gray-900/10 pb-1 mr-12 w-72"
             id="addrDetail"
             type="text"
+            placeholder="상세주소"
             value={userAddress.userAddress2}
             onChange={(e) =>
               setUserAddress({ ...userAddress, userAddress2: e.target.value })
             }
           />
-          <button onClick={addUserAddress}>저장</button>
+
+          <button
+            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={addUserAddress}
+          >
+            저장
+          </button>
         </div>
       </div>
     </>

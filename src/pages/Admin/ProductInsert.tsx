@@ -59,11 +59,10 @@ export default function ProductInsert() {
         <div className="ml-64 space-y-12 pr-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base mt-5 font-semibold leading-7 text-gray-900">
-              Product
+              상품
             </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              This information will be displayed publicly so be careful what you
-              share.
+              상품을 추가할 수 있습니다.
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -72,7 +71,7 @@ export default function ProductInsert() {
                   htmlFor="pdName"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  pdName
+                  상품 이름
                 </label>
                 <div className="mt-2">
                   <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -91,7 +90,7 @@ export default function ProductInsert() {
                   htmlFor="pdPrice"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  pdPrice
+                  상품 가격
                 </label>
                 <div className="mt-2">
                   <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -110,7 +109,7 @@ export default function ProductInsert() {
                   htmlFor="pdQuantity"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  pdQuantity
+                  상품 수량
                 </label>
                 <div className="mt-2">
                   <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -129,7 +128,7 @@ export default function ProductInsert() {
                   htmlFor="pdSize"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  pdSize
+                  상품 사이즈
                 </label>
                 <div className="mt-2">
                   <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -148,7 +147,7 @@ export default function ProductInsert() {
                   htmlFor="pdStat"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  pdStat
+                  상품 상태
                 </label>
                 <div className="mt-2">
                   <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -167,7 +166,7 @@ export default function ProductInsert() {
                   htmlFor="pdDetail"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  pdDetail
+                  상품 상세 설명
                 </label>
                 <div className="mt-2">
                   <textarea
@@ -178,9 +177,6 @@ export default function ProductInsert() {
                     defaultValue={""}
                   />
                 </div>
-                <p className="mt-3 text-sm leading-6 text-gray-600">
-                  Write a few sentences about yourself.
-                </p>
               </div>
 
               <div className="sm:col-span-4">
@@ -188,7 +184,7 @@ export default function ProductInsert() {
                   htmlFor="userEmail"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  userEmail
+                  관리자 유저 이메일
                 </label>
                 <div className="mt-2">
                   <input
@@ -206,7 +202,7 @@ export default function ProductInsert() {
                   htmlFor="categoryName"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  category
+                  카테고리 (*카테고리 추가를 먼저 해주세요)
                 </label>
                 <div className="mt-2">
                   <select
@@ -245,7 +241,7 @@ export default function ProductInsert() {
                   htmlFor="subCategoryName"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  subcategory
+                  세부 카테고리 (*세부 카테고리 추가를 먼저 해주세요)
                 </label>
                 <div className="mt-2">
                   <select
@@ -278,7 +274,7 @@ export default function ProductInsert() {
                   htmlFor="cover-photo"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Cover photo
+                  상품 이미지
                 </label>
                 <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                   <div className="text-center">
@@ -316,13 +312,13 @@ export default function ProductInsert() {
             type="button"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
-            Cancel
+            취소
           </button>
           <button
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Save
+            저장
           </button>
         </div>
       </form>

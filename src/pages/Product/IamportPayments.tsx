@@ -18,6 +18,20 @@ interface orderItemDatas {
   userEmail: String;
 }
 
+interface orderItemIds {
+  orderItemIds: number[];
+}
+
+interface transactionData {
+  deliveryId: number;
+  orderItemIds: number[]; // 주문 목록의 ID들을 저장할 배열
+  paymentMethod: String;
+  rcvName: String;
+  rcvPhn: String;
+  tidStat: String;
+  userEmail: String;
+}
+
 export interface RequestPayAdditionalParams {
   digital?: boolean;
   vbank_due?: string;
@@ -98,8 +112,14 @@ declare global {
 
 const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
   const [orderItemDatas, setOrderItemDatas] = useState<orderItemDatas[]>([]);
+  const [transactionData, setTransactionData] =
+    useState<transactionData | null>(null);
+  // const [orderItemIds, setOrderItemIds] = useState<orderItemIds>({
+  //   orderItemIds: []
+  // });
+
   const [cart, setCart] = useRecoilState(cartState);
-  const { userAddress1, userAddress2, userAddress3 } = delivery;
+  const { deliverId, userAddress1, userAddress2, userAddress3 } = delivery;
 
   console.log("cart", cart);
 
@@ -118,7 +138,24 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
       };
     });
 
+    // 주문 정보 생성을 위한 데이터
+    const transactionData = {
+      deliveryId: deliverId,
+      orderItemIds: [], // 주문 목록의 ID들을 저장할 배열
+      paymentMethod: "credit_card",
+      rcvName: "김현승",
+      rcvPhn: "010-8191-8151",
+      tidStat: "pending",
+      userEmail: "rhgustmfrh@naver.com"
+    };
+
     setOrderItemDatas(orderItemDatas);
+
+    setTransactionData(transactionData);
+
+    console.log("orderItemDatas", orderItemDatas);
+
+    console.log("transactionData", transactionData);
 
     return () => {
       document.body.removeChild(script);
@@ -149,8 +186,8 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
       buyer_name: "홍길동",
       buyer_tel: "01012341234",
       buyer_email: "example@example",
-      buyer_addr: "신사동 661-16",
-      buyer_postcode: "06018"
+      buyer_addr: userAddress1 + userAddress2,
+      buyer_postcode: userAddress3
     };
 
     /* 4. 결제 창 호출하기 */
@@ -181,23 +218,12 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
       buyer_name: "홍길동",
       buyer_tel: "01012341234",
       buyer_email: "example@example",
-      buyer_addr: "신사동 661-16",
-      buyer_postcode: "06018"
+      buyer_addr: userAddress1 + userAddress2,
+      buyer_postcode: userAddress3
     };
 
     /* 4. 결제 창 호출하기 */
     IMP.request_pay(data, callback);
-  };
-
-  // 주문 정보 생성을 위한 데이터
-  const transactionData = {
-    deliveryId: 123,
-    orderItemIds: [], // 주문 목록의 ID들을 저장할 배열
-    paymentMethod: "credit_card",
-    rcvName: "김현승",
-    rcvPhn: "010-8191-8151",
-    tidStat: "pending",
-    userEmail: "rhgustmfrh@naver.com"
   };
 
   //   // 주문 목록 생성을 위한 데이터 배열
@@ -221,37 +247,51 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
   const createOrderItems = () => {
     const orderItemIds: any = []; // 생성된 주문 목록의 ID들을 저장할 배열
 
-    Promise.all(
-      orderItemDatas.map((orderItemData) => {
-        return axios
-          .post("http://backend-api-url/api/orderItem/create", orderItemData)
-          .then((response) => {
-            console.log("Order item created successfully:", response.data);
-            const orderItemId = response.data.orderItemId; // 생성된 주문 목록의 ID
-            orderItemIds.push(orderItemId); // 생성된 주문 목록의 ID를 배열에 추가
-          })
-          .catch((error) => {
-            console.error("Error creating order items:", error);
-          });
+    const orderItemData = orderItemDatas.map((orderItem) => ({
+      pdNo: orderItem.pdNo,
+      price: orderItem.price,
+      quantity: orderItem.quantity,
+      userEmail: orderItem.userEmail
+    }));
+
+    axios
+      .post("http://localhost:8096/api/orderItem/create", orderItemData)
+      .then((response) => {
+        console.log("Order items created successfully:", response.data);
+        // 생성된 주문 항목의 ID들을 처리하거나 다음 단계로 진행할 수 있습니다.
+        response.data.forEach((item: any) => {
+          orderItemIds.push(item.orderItemId);
+        });
+        console.log("orderItemIds O", orderItemIds);
+        // setOrderItemIds(orderItemIds);
+        createTransactionData(orderItemIds);
       })
-    ).then(() => {
-      // 모든 주문 목록이 생성되었을 때 주문 정보 생성 요청
-      createTransactionData(orderItemIds);
-    });
+      .catch((error) => {
+        console.error("Error creating order items:", error);
+      });
   };
 
   // 주문 정보 생성 요청
   const createTransactionData = (orderItemIds: any) => {
-    transactionData.orderItemIds = orderItemIds; // 생성된 주문 목록의 ID들을 설정
+    console.log("orderItemIds T", orderItemIds);
+    if (transactionData) {
+      transactionData.orderItemIds = orderItemIds; // 생성된 주문 목록의 ID들을 설정
 
-    axios
-      .post("http://backend-api-url/api/transaction/create", transactionData)
-      .then((response) => {
-        console.log("Transaction created successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error creating transaction:", error);
-      });
+      console.log("transactionData", transactionData);
+
+      axios
+        .post("http://localhost:8096/api/transaction/create", transactionData)
+        .then((response) => {
+          console.log("Transaction created successfully:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error creating transaction:", error);
+        });
+    }
+  };
+
+  const handlePaymentTest = () => {
+    createOrderItems();
   };
 
   const callback = (response: RequestPayResponse) => {
@@ -275,6 +315,7 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
       {pg === "html5_inicis.INIBillTst" && (
         <button onClick={handlePayment1}>신용카드로 구매</button>
       )}
+      {/* <button onClick={handlePaymentTest}>구매 테스트</button> */}
     </>
   );
 };
