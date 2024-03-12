@@ -46,7 +46,7 @@ export default function Expense() {
   return (
     <>
       <Header></Header>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit}>
         <div className="ml-64 space-y-12 pr-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base mt-5 font-semibold leading-7 text-gray-900">

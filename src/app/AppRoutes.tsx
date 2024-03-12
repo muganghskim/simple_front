@@ -13,7 +13,11 @@ import SignIn from "../pages/User/SignIn";
 import SignUp from "../pages/User/SignUp";
 import Profile from "../pages/User/Profile";
 import CategoryInsert from "../pages/Admin/CategoryInsert";
+import NoticeInsert from "../pages/Admin/NoticeInsert";
 import Expense from "../pages/Admin/Expense";
+import Admin from "../pages/Admin/Admin";
+import Inven from "../pages/Admin/Inven";
+import Profit from "../pages/Admin/Profit";
 
 function AppRoutes() {
   return (
@@ -26,9 +30,13 @@ function AppRoutes() {
         <Route path="/header" element={<Header />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/error" element={<Error />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/inven" element={<Inven />} />
+        <Route path="/admin/profit" element={<Profit />} />
         <Route path="/admin/product/insert" element={<ProductInsert />} />
         <Route path="/admin/category/insert" element={<CategoryInsert />} />
         <Route path="/admin/expense/insert" element={<Expense />} />
+        <Route path="/admin/notice/insert" element={<NoticeInsert />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
