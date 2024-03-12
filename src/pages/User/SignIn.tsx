@@ -4,23 +4,11 @@ import Header from "../Common/Header";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { userState, isLoggedInState } from "../../recoil/atoms/auth";
-/*
-  This example requires some changes to your config:
 
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 export default function SignIn() {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
   const navigate = useNavigate();
+  // TODO 요청 헤더에 토큰 넣기, 관리자 페이지 블락
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -35,7 +23,7 @@ export default function SignIn() {
       );
       const { username, email, token, refreshToken } = response.data;
       localStorage.setItem("token", token); // 로컬 스토리지에 토큰 저장
-      localStorage.setItem("email", email); // 로컬 스토리지에 email 저장
+      localStorage.setItem("email", username); // 로컬 스토리지에 email 저장
       localStorage.setItem("refreshToken", refreshToken); // 로컬 스토리지에 리프레쉬 토큰 저장
       setIsLoggedIn(true);
 
@@ -69,7 +57,7 @@ export default function SignIn() {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            로그인을 해주세요.
           </h2>
         </div>
 
@@ -85,7 +73,7 @@ export default function SignIn() {
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                이메일 주소
               </label>
               <div className="mt-2">
                 <input
@@ -105,15 +93,15 @@ export default function SignIn() {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Password
+                  비밀번호
                 </label>
                 <div className="text-sm">
-                  <a
+                  {/* <a
                     href="#"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
-                    Forgot password?
-                  </a>
+                    비밀번호를 잊어버리셨나요?
+                  </a> */}
                 </div>
               </div>
               <div className="mt-2">
@@ -133,18 +121,18 @@ export default function SignIn() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                로그인
               </button>
             </div>
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{" "}
+            멤버가 아니신가요?{" "}
             <a
               href="signup"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
-              Start a 14 day free trial
+              지금 회원가입 해주세요.
             </a>
           </p>
         </div>

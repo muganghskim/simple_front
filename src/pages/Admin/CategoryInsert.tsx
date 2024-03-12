@@ -1,17 +1,3 @@
-/*
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import Header from "../Common/Header";
 import axios from "axios";
@@ -22,13 +8,19 @@ export default function CategoryInsert() {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
+    const token = localStorage.getItem("token");
 
     console.log(data);
 
     try {
       const response = await axios.post(
-        "http://localhost:8096/api/registerCategory",
-        data
+        "http://localhost:8096/admin/registerCategory",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
 
       alert("카테고리 설정에 성공하였습니다.");

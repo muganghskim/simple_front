@@ -75,6 +75,7 @@ interface Product {
 //   details:
 //     'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.'
 // };
+
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
 function classNames(...classes: any) {
@@ -88,12 +89,16 @@ export default function ProductDetail() {
   // const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
   const [open, setOpen] = useState(false); // 초기 상태를 false로 설정하여 카트가 보이지 않게 합니다.
   const [cart, setCart] = useRecoilState(cartState);
+  // const [user, setUser] = useState<String | null>(null);
   // const [open, setOpen] = useRecoilState(isOpenState);
+  const userYn = localStorage.getItem("email");
+
+  console.log("email", userYn);
 
   const productData = {
     pdNo: product?.pdNo,
     quantity: 1,
-    userEmail: "rhgustmfrh@naver.com"
+    userEmail: userYn
   };
 
   useEffect(() => {
@@ -104,6 +109,7 @@ export default function ProductDetail() {
       setProduct(response.data);
     };
     getProduct();
+    console.log("userYn", userYn);
   }, []);
 
   // 닫기 이벤트 핸들러 정의
@@ -239,7 +245,7 @@ export default function ProductDetail() {
               </p>
 
               {/* Reviews */}
-              <div className="mt-6">
+              {/* <div className="mt-6">
                 <h3 className="sr-only">Reviews</h3>
                 <div className="flex items-center">
                   <div className="flex items-center">
@@ -264,14 +270,17 @@ export default function ProductDetail() {
                     {reviews.totalCount} reviews
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <form className="mt-10">
                 {/* Colors */}
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900">Color</h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-medium text-gray-900">상태</h3>
+                  <p className="text-2xl tracking-tight text-gray-900">
+                    {product.pdStat}
+                  </p>
 
-                  <RadioGroup
+                  {/* <RadioGroup
                     // value={selectedColor}
                     // onChange={setSelectedColor}
                     className="mt-4"
@@ -280,7 +289,7 @@ export default function ProductDetail() {
                       Choose a color
                     </RadioGroup.Label>
                     <div className="flex items-center space-x-3">
-                      {/* {product.colors.map((color) => (
+                      {product.colors.map((color) => (
                         <RadioGroup.Option
                           key={color.name}
                           value={color}
@@ -304,24 +313,29 @@ export default function ProductDetail() {
                             )}
                           />
                         </RadioGroup.Option>
-                      ))} */}
+                      ))}
                     </div>
-                  </RadioGroup>
+                  </RadioGroup> */}
                 </div>
 
                 {/* Sizes */}
                 <div className="mt-10">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-medium text-gray-900">Size</h3>
-                    <a
+                    <h3 className="text-sm font-medium text-gray-900">
+                      사이즈
+                    </h3>
+                    <p className="text-2xl tracking-tight text-gray-900">
+                      {product.pdSize}
+                    </p>
+                    {/* <a
                       href="#"
                       className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
                     >
                       Size guide
-                    </a>
+                    </a> */}
                   </div>
 
-                  <RadioGroup
+                  {/* <RadioGroup
                     // value={selectedSize}
                     // onChange={setSelectedSize}
                     className="mt-4"
@@ -330,7 +344,7 @@ export default function ProductDetail() {
                       Choose a size
                     </RadioGroup.Label>
                     <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                      {/* {product.sizes.map((size) => (
+                      {product.sizes.map((size) => (
                         <RadioGroup.Option
                           key={size.name}
                           value={size}
@@ -385,9 +399,9 @@ export default function ProductDetail() {
                             </>
                           )}
                         </RadioGroup.Option>
-                      ))} */}
+                      ))}
                     </div>
-                  </RadioGroup>
+                  </RadioGroup> */}
                 </div>
 
                 <button
@@ -395,7 +409,7 @@ export default function ProductDetail() {
                   type="button"
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  Add to bag
+                  장바구니 추가
                 </button>
               </form>
               {/* <IamportPayment product={product} pg={"kakaopay.TC0ONETIME"} />
@@ -410,15 +424,15 @@ export default function ProductDetail() {
               <div>
                 <h3 className="sr-only">Description</h3>
 
-                <div className="space-y-6">
+                {/* <div className="space-y-6">
                   <p className="text-base text-gray-900">{product.pdDetail}</p>
-                </div>
+                </div> */}
               </div>
 
               <div className="mt-10">
-                <h3 className="text-sm font-medium text-gray-900">
+                {/* <h3 className="text-sm font-medium text-gray-900">
                   Highlights
-                </h3>
+                </h3> */}
 
                 <div className="mt-4">
                   <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
@@ -432,7 +446,7 @@ export default function ProductDetail() {
               </div>
 
               <div className="mt-10">
-                <h2 className="text-sm font-medium text-gray-900">Details</h2>
+                <h2 className="text-sm font-medium text-gray-900">제품 상세</h2>
 
                 <div className="mt-4 space-y-6">
                   <p className="text-sm text-gray-600">{product.pdDetail}</p>

@@ -22,16 +22,16 @@ export default function Expense() {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
-
+    const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://localhost:8096/api/expenses/create",
-        data
-        // {
-        //   headers: {
-        //     "Content-Type": "multipart/form-data"
-        //   }
-        // }
+        "http://localhost:8096/admin/expenses/create",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
 
       alert("비용 생성에 성공하였습니다.");

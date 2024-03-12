@@ -101,7 +101,7 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
           />
 
           <input
-            className="border-b border-gray-900/10 pb-1 mr-8 w-14"
+            className="border-b border-gray-900/10 pb-1 mr-8 w-24"
             id="zipNo"
             type="text"
             placeholder="우편번호"

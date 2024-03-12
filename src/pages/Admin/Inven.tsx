@@ -25,7 +25,7 @@ export default function Inven() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8096/api/expenses/create",
+        "http://localhost:8096/admin/expenses/create",
         data
         // {
         //   headers: {

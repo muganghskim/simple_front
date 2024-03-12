@@ -34,7 +34,7 @@ export default function NoticeInsert() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8096/api/registerProduct",
+        "http://localhost:8096/admin/registerProduct",
         formData
         // {
         //   headers: {

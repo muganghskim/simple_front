@@ -15,7 +15,7 @@ interface orderItemDatas {
   pdNo: number;
   price: number;
   quantity: number;
-  userEmail: String;
+  userEmail?: String | null;
 }
 
 interface orderItemIds {
@@ -29,7 +29,7 @@ interface transactionData {
   rcvName: String;
   rcvPhn: String;
   tidStat: String;
-  userEmail: String;
+  userEmail?: String | null;
 }
 
 export interface RequestPayAdditionalParams {
@@ -118,6 +118,19 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
   //   orderItemIds: []
   // });
 
+  const userYn = localStorage.getItem("email");
+
+  const deliveryData = {
+    userEmail: userYn || undefined
+  };
+
+  if (userYn === null) {
+    // userYn이 null일 때 경고창 표시
+    alert("로그인이 필요합니다.");
+    // 추가적으로 로그인 페이지로 리다이렉트할 수 있습니다.
+    window.location.href = "/signin";
+  }
+
   const [cart, setCart] = useRecoilState(cartState);
   const { deliverId, userAddress1, userAddress2, userAddress3 } = delivery;
 
@@ -134,7 +147,7 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
         pdNo: item.pdNo,
         price: item.pdPrice,
         quantity: item.pdQuantity,
-        userEmail: "rhgustmfrh@naver.com" // 여기에 사용자 이메일을 적절히 넣어주세요
+        userEmail: deliveryData.userEmail // 여기에 사용자 이메일을 적절히 넣어주세요
       };
     });
 
@@ -146,7 +159,7 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
       rcvName: "김현승",
       rcvPhn: "010-8191-8151",
       tidStat: "pending",
-      userEmail: "rhgustmfrh@naver.com"
+      userEmail: deliveryData.userEmail
     };
 
     setOrderItemDatas(orderItemDatas);
@@ -185,7 +198,7 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
       name: productName, // 상품명
       buyer_name: "홍길동",
       buyer_tel: "01012341234",
-      buyer_email: "example@example",
+      buyer_email: deliveryData.userEmail,
       buyer_addr: userAddress1 + userAddress2,
       buyer_postcode: userAddress3
     };
@@ -217,7 +230,7 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
       name: productName, // 상품명
       buyer_name: "홍길동",
       buyer_tel: "01012341234",
-      buyer_email: "example@example",
+      buyer_email: deliveryData.userEmail,
       buyer_addr: userAddress1 + userAddress2,
       buyer_postcode: userAddress3
     };

@@ -32,15 +32,18 @@ export default function ProductInsert() {
     formData.append("subCategoryName", event.target.subCategoryName.value);
     formData.append("file", event.target.file.files[0]);
 
+    const token = localStorage.getItem("token");
+
     try {
       const response = await axios.post(
-        "http://localhost:8096/api/registerProduct",
-        formData
-        // {
-        //   headers: {
-        //     "Content-Type": "multipart/form-data"
-        //   }
-        // }
+        "http://localhost:8096/admin/registerProduct",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
 
       alert("상품 등록에 성공하였습니다.");

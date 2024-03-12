@@ -110,7 +110,7 @@ export default function SignUp() {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign up to your account
+            회원가입을 해주세요.
           </h2>
         </div>
 
@@ -126,7 +126,7 @@ export default function SignUp() {
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                이메일 주소
               </label>
               <div className="mt-2">
                 <input
@@ -162,7 +162,7 @@ export default function SignUp() {
                   <div className="relative w-auto max-w-md p-6 my-8 mx-auto bg-white rounded-lg shadow-lg">
                     <div className="text-center">
                       <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                        Enter Verification Code
+                        인증코드를 넣어주세요.
                       </h3>
                     </div>
                     <div className="mt-4">
@@ -179,7 +179,7 @@ export default function SignUp() {
                         className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
                         onClick={handleEmailCodeAuthentication}
                       >
-                        Verify
+                        승인
                       </button>
                     </div>
                   </div>
@@ -192,7 +192,7 @@ export default function SignUp() {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Password
+                  패스워드
                 </label>
               </div>
               <div className="mt-2">
@@ -212,7 +212,7 @@ export default function SignUp() {
                 htmlFor="username"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                User name
+                유저 닉네임
               </label>
               <div className="mt-2">
                 <input
@@ -231,7 +231,7 @@ export default function SignUp() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign up
+                회원 가입
               </button>
             </div>
           </form>
