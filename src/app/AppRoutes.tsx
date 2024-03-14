@@ -16,8 +16,10 @@ import CategoryInsert from "../pages/Admin/CategoryInsert";
 import NoticeInsert from "../pages/Admin/NoticeInsert";
 import Expense from "../pages/Admin/Expense";
 import Admin from "../pages/Admin/Admin";
+import AdminLogin from "../pages/Admin/AdminLogin";
 import Inven from "../pages/Admin/Inven";
 import Profit from "../pages/Admin/Profit";
+import LoginSuccess from "../pages/User/LoginSuccess";
 
 function AppRoutes() {
   return (
@@ -31,6 +33,7 @@ function AppRoutes() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/error" element={<Error />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/inven" element={<Inven />} />
         <Route path="/admin/profit" element={<Profit />} />
         <Route path="/admin/product/insert" element={<ProductInsert />} />
@@ -41,6 +44,7 @@ function AppRoutes() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/loginSuccess" element={<LoginSuccess />} />
         {/* <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />

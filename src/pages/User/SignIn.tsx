@@ -134,7 +134,40 @@ export default function SignIn() {
             >
               지금 회원가입 해주세요.
             </a>
+            <span>
+              <br />
+              간편로그인도 가능합니다!
+            </span>
           </p>
+
+          <div className="mt-4 flex justify-center">
+            <ul className="flex w-full justify-around">
+              <li>
+                <a href="http://localhost:8096/oauth2/authorization/google">
+                  <i className="google-i">
+                    <img src={"/img/google.png"} alt="구글 로그인 이미지"></img>
+                  </i>
+                </a>
+              </li>
+              <li>
+                <a href="http://localhost:8096/oauth2/authorization/naver">
+                  <i className="naver-i">
+                    <img
+                      src={"/img/naver.png"}
+                      alt="네이버 로그인 이미지"
+                    ></img>
+                  </i>
+                </a>
+              </li>
+              <li>
+                <a href="http://localhost:8096/oauth2/authorization/kakao">
+                  <i className="kakao-i">
+                    <img src={"/img/kko.png"} alt="카카오 로그인 이미지"></img>
+                  </i>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </>

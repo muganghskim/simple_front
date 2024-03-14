@@ -56,6 +56,7 @@ const Header: React.FC = () => {
       localStorage.removeItem("token");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("email");
+      localStorage.removeItem("isAdmin");
       setIsLoggedIn(false);
     } catch (error) {
       console.error("Error during logout:", error);

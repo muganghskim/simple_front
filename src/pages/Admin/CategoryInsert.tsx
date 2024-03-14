@@ -3,6 +3,8 @@ import Header from "../Common/Header";
 import axios from "axios";
 
 export default function CategoryInsert() {
+  const isAdmin = localStorage.getItem("isAdmin");
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
@@ -31,6 +33,16 @@ export default function CategoryInsert() {
       alert("카테고리 설정에 실패하였습니다.");
     }
   };
+
+  // 관리자 여부에 따라 다른 컴포넌트 렌더링
+  if (isAdmin === "false" || isAdmin === null) {
+    // 관리자가 아닌 경우
+    // 리다이렉트하거나 관리자가 아니라는 메시지를 표시
+    window.location.href = "/signin"; // 로그인 페이지로 리다이렉트
+    // 리다이렉트하는 경우 아래 리턴문은 필요 없지만, 예시를 위해 포함
+    return <div>관리자만 접근 가능합니다.</div>;
+  }
+
   return (
     <>
       <Header></Header>

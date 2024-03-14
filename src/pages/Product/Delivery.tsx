@@ -11,6 +11,7 @@ import Header from "../Common/Header";
 import Addr from "./Addr";
 import axios from "axios";
 import IamportPayments from "./IamportPayments";
+//TODO : 배송지가 없을때 예외처리
 
 export default function Delivery() {
   const [deliverys, setDeliverys] = useState<Delivery[]>([]);
@@ -64,6 +65,7 @@ export default function Delivery() {
       setSelectedDelivery(selectedDelivery);
       console.log("Selected delivery:", selectedDelivery);
     } else {
+      window.alert("배송지를 추가해 주세요~");
       console.error("No delivery selected.");
     }
   };
