@@ -53,7 +53,7 @@ export default function Cart(props: any) {
   // const [open, setOpen] = useState(false);
   // let [isOpen, setIsOpen] = useState(true);
   const [cart, setCart] = useRecoilState(cartState);
-  const [cartFlag, setCartFlag] = useState(false);
+  // const [cartFlag, setCartFlag] = useState(false);
   const { isOpen, onClose, product } = props;
 
   const userYn = localStorage.getItem("email");
@@ -77,21 +77,23 @@ export default function Cart(props: any) {
       "http://localhost:8096/api/cart/remove",
       updateCart
     );
-    setCartFlag(!cartFlag);
-    console.log(cartFlag);
+    getCart();
+    // setCartFlag(!cartFlag);
+    // console.log(cartFlag);
     console.log("remove", responseRemove.data);
   };
 
-  useEffect(() => {
-    const getCart = async () => {
-      const responseCart = await axios.get(
-        `http://localhost:8096/api/cart/${productData.userEmail}`
-      );
-      setCart(responseCart.data);
-    };
+  const getCart = async () => {
+    const responseCart = await axios.get(
+      `http://localhost:8096/api/cart/${productData.userEmail}`
+    );
+    setCart(responseCart.data);
+  };
 
+  useEffect(() => {
+    
     getCart();
-  }, [cartFlag]);
+  }, []);
 
   console.log("cart", cart);
 

@@ -17,8 +17,15 @@ interface AddrProps {
 }
 
 const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
+
+  const userYn = localStorage.getItem("email");
+
+  const deliveryData = {
+    userEmail: userYn
+  };
+
   const [userAddress, setUserAddress] = useState({
-    userEmail: "rhgustmfrh@naver.com",
+    userEmail: deliveryData.userEmail,
     userAddress1: "",
     userAddress2: "",
     userAddress3: ""
@@ -65,9 +72,14 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
         "http://localhost:8096/api/delivery/add",
         userAddress
       );
-    };
-    handleCreateAddress();
+      console.log("User address added successfully.");
+    // 주소 추가 완료 후 onAddressAdded 콜백 호출
     onAddressAdded();
+
+    };
+    
+    handleCreateAddress();
+    
     // axios
     //   .post("http://localhost:8096/api/delivery/add", userAddress)
     //   .then((response) => {

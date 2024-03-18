@@ -117,17 +117,35 @@ export default function ProductDetail() {
     setOpen(false);
   };
 
-  // 클릭 이벤트 핸들러
-  const handleCartClick = () => {
-    const handleCreateItem = async () => {
-      const responseSave = await axios.post(
-        "http://localhost:8096/api/cart/create",
-        productData
-      );
-    };
-    handleCreateItem();
-    setOpen((prevOpen) => !prevOpen); // 현재 상태를 반전시킵니다.
+  const getCart = async () => {
+    const responseCart = await axios.get(
+      `http://localhost:8096/api/cart/${productData.userEmail}`
+    );
+    setCart(responseCart.data);
   };
+
+  const handleCreateItem = async () => {
+    const responseSave = await axios.post(
+      "http://localhost:8096/api/cart/create",
+      productData
+    );
+  };
+
+  // 클릭 이벤트 핸들러
+  const handleCartClick = async () => {
+    if (userYn === null) {
+      // userYn이 null일 때 경고창 표시
+      alert("로그인이 필요합니다.");
+      // 추가적으로 로그인 페이지로 리다이렉트할 수 있습니다.
+      window.location.href = "/signin";
+    }
+    await handleCreateItem();
+    // 아이템 추가가 성공적으로 완료된 후 UI 상태 업데이트
+    setOpen((prevOpen) => !prevOpen);
+    // 장바구니 데이터 업데이트를 위한 함수 호출
+    getCart();
+  };
+  
   if (!product) {
     return <div>Loading...</div>; // 상품 데이터가 아직 없는 경우 로딩 표시
   }

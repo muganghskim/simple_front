@@ -5,7 +5,7 @@ interface Delivery {
   userAddress3: string;
 }
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import Header from "../Common/Header";
 import Addr from "./Addr";
@@ -59,16 +59,30 @@ export default function Delivery() {
   };
 
   const handleNextButtonClick = () => {
-    if (selectedDeliveryIndex !== null) {
+    if (selectedDeliveryIndex !== undefined && selectedDeliveryIndex !== null && deliverys.length > selectedDeliveryIndex) {
       const selectedDelivery = deliverys[selectedDeliveryIndex];
-      // 선택한 배송지 데이터를 여기서 사용하여 다음 처리를 수행
-      setSelectedDelivery(selectedDelivery);
-      console.log("Selected delivery:", selectedDelivery);
+      if (selectedDelivery !== undefined) {
+        // Use selectedDelivery here for further processing
+        setSelectedDelivery(selectedDelivery); // Assuming setSelectedDelivery is a state updater function
+        console.log("Selected delivery:", selectedDelivery);
+      } else {
+        console.error("Selected delivery is undefined.");
+      }
     } else {
       window.alert("배송지를 추가해 주세요~");
-      console.error("No delivery selected.");
+      console.error("No delivery selected or index out of bounds.");
     }
   };
+
+  const handleAddressDelete = useCallback(async (deliverId: any) => {
+    try {
+      const response = await axios.delete(`http://localhost:8096/api/delivery/${deliverId}`);
+      handleAddressAdded(); // 상태 업데이트 함수
+    } catch (error) {
+      console.error("Error deleting delivery data:", error);
+    }
+  }, []); // 의존성 배열, 여기서는 빈 배열을 사용했습니다. 필요에 따라 업데이트하세요.
+  
 
   return (
     <>
@@ -86,8 +100,10 @@ export default function Delivery() {
               <p className="mt-1 mb-5 text-sm leading-6 text-gray-600">
                 배송 받을 배송지를 선택해 주세요.
               </p>
+              
               {deliverys.map((delivery, index) => (
-                <div key={index} className="border-b border-gray-900/10 pb-12">
+                <div className="flex justify-between border-b border-gray-900/10 pb-12">
+                <div key={index}>
                   <input
                     type="radio"
                     name="delivery"
@@ -109,7 +125,11 @@ export default function Delivery() {
                     {delivery.userAddress3}
                   </p>
                 </div>
+                <button type="button" onClick={() => handleAddressDelete(delivery.deliverId)}>제거</button>
+                </div>
               ))}
+              
+              
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"></div>
             </div>
 
