@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { userState, isLoggedInState } from "../../recoil/atoms/auth";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import {
   Bars3Icon,
@@ -11,6 +12,7 @@ import {
   ArrowRightEndOnRectangleIcon
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import Footer from "../Common/Footer";
 
 const nav = [
   {
@@ -196,9 +198,9 @@ const Header: React.FC = () => {
                     <div className="hidden sm:ml-6 sm:block">
                       <div className="flex flex-col mb-10 pr-6">
                         {nav.map((item) => (
-                          <a
+                          <Link
                             key={item.id}
-                            href={item.href}
+                            to={item.href}
                             className={classNames(
                               item.current
                                 ? "bg-gray-900 text-white"
@@ -208,7 +210,7 @@ const Header: React.FC = () => {
                             aria-current={item.current ? "page" : undefined}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -240,6 +242,7 @@ const Header: React.FC = () => {
           )}
         </Disclosure>
       </div>
+      <Footer></Footer>
     </>
   );
 };

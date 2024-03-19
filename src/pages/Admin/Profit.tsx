@@ -55,6 +55,14 @@ export default function Profit() {
     fetchAllProfits();
   }, []);
 
+  useEffect(() => {
+    fetchProfitsByMonth();
+  }, [selectedMonth, selectedYear]); // selectedMonth와 selectedYear가 변경될 때마다 실행
+
+  useEffect(() => {
+    fetchProfitsByDay();
+  }, [selectedDate]); // selectedDate가 변경될 때마다 실행
+
   // 전체 조회
   const fetchAllProfits = async () => {
     setLoading(true);
@@ -172,6 +180,7 @@ export default function Profit() {
     setSelectedMonth(event.target.value);
     setShowMonthPicker(false); // 월을 선택하면 월 선택기 숨기기
     // 추가적으로 선택된 월을 처리하는 로직
+    // fetchProfitsByMonth();
   };
 
   const handleYearSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {

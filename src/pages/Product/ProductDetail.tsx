@@ -2,9 +2,9 @@ import { useState, useEffect, Fragment } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { Transition } from "@headlessui/react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Header from "../Common/Header";
-import IamportPayment from "./IamportPayment";
+// import IamportPayment from "./IamportPayment";
 import Cart from "./Cart";
 import axios from "axios";
 import { useRecoilState } from "recoil";
@@ -148,7 +148,11 @@ export default function ProductDetail() {
   };
   
   if (!product) {
-    return <div>Loading...</div>; // 상품 데이터가 아직 없는 경우 로딩 표시
+    
+    return <>
+    <Header></Header>
+    <div>Loading...</div>
+    </> // 상품 데이터가 아직 없는 경우 로딩 표시
   }
 
   return (

@@ -15,6 +15,7 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import React, { useState, useEffect } from "react";
 import Header from "../Common/Header";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
 export default function Admin() {
@@ -45,57 +46,57 @@ export default function Admin() {
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
-              <a
+              <Link
                 className="block text-sm font-medium leading-6 text-gray-900 hover:underline hover:text-blue-500"
-                href="/admin/expense/insert"
+                to="/admin/expense/insert"
               >
                 비용 관리
-              </a>
+              </Link>
             </div>
 
             <div className="sm:col-span-4">
-              <a
+              <Link
                 className="block text-sm font-medium leading-6 text-gray-900 hover:underline hover:text-blue-500"
-                href="/admin/inven"
+                to="/admin/inven"
               >
                 재고 관리
-              </a>
+              </Link>
             </div>
 
             <div className="sm:col-span-4">
-              <a
+              <Link
                 className="block text-sm font-medium leading-6 text-gray-900 hover:underline hover:text-blue-500"
-                href="/admin/profit"
+                to="/admin/profit"
               >
                 수익 관리
-              </a>
+              </Link>
             </div>
 
             <div className="sm:col-span-4">
-              <a
+              <Link
                 className="block text-sm font-medium leading-6 text-gray-900 hover:underline hover:text-blue-500"
-                href="/admin/category/insert"
+                to="/admin/category/insert"
               >
                 카테고리 추가
-              </a>
+              </Link>
             </div>
 
             <div className="sm:col-span-4">
-              <a
+              <Link
                 className="block text-sm font-medium leading-6 text-gray-900 hover:underline hover:text-blue-500"
-                href="/admin/product/insert"
+                to="/admin/product/insert"
               >
                 상품 추가
-              </a>
+              </Link>
             </div>
 
             <div className="sm:col-span-4">
-              <a
+              <Link
                 className="block text-sm font-medium leading-6 text-gray-900 hover:underline hover:text-blue-500"
-                href="/admin/notice/insert"
+                to="/admin/notice/insert"
               >
                 공지사항 추가
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import Header from "../Common/Header";
-import Footer from "../Common/Footer";
+// import Footer from "../Common/Footer";
 
 const features = [
   { name: 'Origin', description: 'Designed by Good Goods, Inc.' },
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </>
   );
 };
