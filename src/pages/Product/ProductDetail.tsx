@@ -21,6 +21,7 @@ interface Product {
   pdStat: string;
   pdSize: string;
   pdImg: string;
+  pdQuantity: number;
 }
 
 // const product = {
@@ -337,7 +338,7 @@ export default function ProductDetail() {
                 </div>
 
                 {/* Sizes */}
-                <div className="mt-10">
+                <div className="mt-6">
                   <div className="flex items-center justify-between">
                     <h3 className="text-sm font-medium text-gray-900">
                       사이즈
@@ -352,6 +353,22 @@ export default function ProductDetail() {
                       Size guide
                     </a> */}
                   </div>
+                  <div className="mt-6 flex items-center justify-between">
+                    <h3 className="text-sm font-medium text-gray-900">
+                      제품 재고
+                    </h3>
+                    <p className="text-2xl tracking-tight text-gray-900">
+                      {product.pdQuantity}
+                    </p>
+                    {/* <a
+                      href="#"
+                      className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                    >
+                      Size guide
+                    </a> */}
+                  </div>
+
+                  
 
                   {/* <RadioGroup
                     // value={selectedSize}
@@ -424,6 +441,7 @@ export default function ProductDetail() {
 
                 <button
                   onClick={handleCartClick}
+                  disabled={product.pdQuantity < 1}
                   type="button"
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
