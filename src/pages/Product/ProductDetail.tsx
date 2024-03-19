@@ -14,8 +14,8 @@ import { cartState } from "../../recoil/atoms/cart";
 interface Product {
   pdNo: number;
   pdName: string;
-  categoryId: number;
-  subcategoryId: number;
+  categoryId: String;
+  subcategoryId: String;
   pdDetail: string;
   pdPrice: number;
   pdStat: string;
@@ -161,7 +161,7 @@ export default function ProductDetail() {
               role="list"
               className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
             >
-              <li key={product.categoryId}>
+              <li>
                 <div className="flex items-center">
                   <a
                     // href={breadcrumb.href}
@@ -181,7 +181,7 @@ export default function ProductDetail() {
                   </svg>
                 </div>
               </li>
-              <li key={product.subcategoryId}>
+              <li>
                 <div className="flex items-center">
                   <a
                     // href={breadcrumb.href}

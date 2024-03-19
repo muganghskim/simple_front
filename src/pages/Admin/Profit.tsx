@@ -95,8 +95,21 @@ export default function Profit() {
     if (!selectedMonth || !selectedYear) return;
     setLoading(true);
     try {
+      const params = {
+        page: page, // 또는 `page: page - 1` 이 필요한 경우
+        size: pageSize,
+        paged: true,
+        "sort.sorted": true, // 또는 false, 정렬 여부
+        "sort.unsorted": false, // 또는 true, 정렬하지 않을 여부
+        unpaged: false, // 페이지네이션을 사용하지 않는 경우 true
+        // 추가적인 정렬 파라미터 예시: 'sort': 'createdAt,desc'
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
       const response = await axios.get(
-        `http://localhost:8096/admin/month/${selectedYear}/${selectedMonth}?page=${page}&size=${pageSize}`
+        `http://localhost:8096/admin/month/${selectedYear}/${selectedMonth}`,
+        params
       );
       setProfits(response.data.content);
     } catch (error) {
@@ -117,8 +130,21 @@ export default function Profit() {
 
     setLoading(true);
     try {
+      const params = {
+        page: page, // 또는 `page: page - 1` 이 필요한 경우
+        size: pageSize,
+        paged: true,
+        "sort.sorted": true, // 또는 false, 정렬 여부
+        "sort.unsorted": false, // 또는 true, 정렬하지 않을 여부
+        unpaged: false, // 페이지네이션을 사용하지 않는 경우 true
+        // 추가적인 정렬 파라미터 예시: 'sort': 'createdAt,desc'
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
       const response = await axios.get(
-        `http://localhost:8096/admin/day/${year}/${month}/${day}?page=${page}&size=${pageSize}`
+        `http://localhost:8096/admin/day/${year}/${month}/${day}`,
+        params
       );
       setProfits(response.data.content); // 페이지네이션된 응답에서 실제 데이터 부분
       // 필요한 경우 추가 페이징 정보 처리
