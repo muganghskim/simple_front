@@ -26,25 +26,42 @@ export default function SignUp() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-
+  
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
-
+  
     try {
       const response = await axios.post(
         "http://localhost:8096/api/signup",
         data
       );
-
+  
       alert("회원가입에 성공하였습니다.");
-
+  
       // Redirect to /signin
       navigate("/signin");
-
+  
       // Handle successful sign up
     } catch (error: any) {
       console.error("Error signing up:", error.message);
-      alert("회원가입에 실패하였습니다.");
+      if (error.response) {
+        switch (error.response.status) {
+          case 400:
+            alert("잘못된 요청입니다. 입력한 정보를 다시 확인해 주세요.");
+            break;
+          case 403:
+            alert("이메일 인증이 완료되지 않았습니다.");
+            break;
+          case 409:
+            alert("이미 사용 중인 이메일입니다.");
+            break;
+          default:
+            alert("회원가입에 실패하였습니다.");
+        }
+      } else {
+        // 네트워크 에러나 기타 예외적 상황을 처리
+        alert("서버에 연결할 수 없습니다. 나중에 다시 시도해주세요.");
+      }
     }
   };
 
