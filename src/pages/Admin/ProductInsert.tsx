@@ -73,7 +73,7 @@ export default function ProductInsert() {
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="ml-64 space-y-12 pr-12">
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base mt-5 font-semibold leading-7 text-gray-900">
+            <h2 className="text-base mt-10 font-semibold leading-7 text-gray-900">
               상품
             </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">

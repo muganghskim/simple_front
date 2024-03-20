@@ -151,7 +151,7 @@ export default function ProductDetail() {
     
     return <>
     <Header></Header>
-    <div>Loading...</div>
+    <div className="ml-64 bg-white">Loading...</div>
     </> // 상품 데이터가 아직 없는 경우 로딩 표시
   }
 

@@ -65,7 +65,14 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
     }
   };
 
-  const addUserAddress = () => {
+  const addUserAddress = async () => {
+
+    // 필수 필드가 비어 있는지 검사
+    if (!userAddress.userAddress1 || !userAddress.userAddress2 || !userAddress.userAddress3) {
+      window.alert("배송지 정보를 넣어주세요");
+      // 필수 필드가 비어 있으면, 여기서 함수 실행을 중단
+      return;
+    }
     console.log("userAddress", userAddress);
     const handleCreateAddress = async () => {
       const responseSave = await axios.post(
@@ -108,6 +115,7 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
             type="text"
             placeholder="도로명/지번"
             readOnly
+            required
             value={userAddress.userAddress1}
             onClick={onClickAddr}
           />
@@ -118,6 +126,7 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
             type="text"
             placeholder="우편번호"
             readOnly
+            required
             value={userAddress.userAddress3}
           />
 
@@ -127,6 +136,7 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
             type="text"
             placeholder="상세주소"
             value={userAddress.userAddress2}
+            required
             onChange={(e) =>
               setUserAddress({ ...userAddress, userAddress2: e.target.value })
             }

@@ -79,7 +79,7 @@ export default function Inven() {
       <Header></Header>
       <div className="ml-64 space-y-12 pr-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base mt-5 font-semibold leading-7 text-gray-900">
+          <h2 className="text-base mt-10 font-semibold leading-7 text-gray-900">
             재고 관리
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -100,7 +100,7 @@ export default function Inven() {
                           Inven ID
                         </th>
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                          Product Name
+                          상품 이름
                         </th>
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                           Created At
@@ -109,7 +109,7 @@ export default function Inven() {
                           StockType
                         </th>
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                          Quantity
+                          재고
                         </th>
                       </tr>
                     </thead>
