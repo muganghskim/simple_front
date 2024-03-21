@@ -21,9 +21,10 @@ export default function SignIn() {
         "http://localhost:8096/api/login",
         data
       );
-      const { username, email, token, refreshToken } = response.data;
+      const { username, email, img, token, refreshToken } = response.data;
       localStorage.setItem("token", token); // 로컬 스토리지에 토큰 저장
       localStorage.setItem("email", username); // 로컬 스토리지에 email 저장
+      localStorage.setItem("img", img)
       localStorage.setItem("refreshToken", refreshToken); // 로컬 스토리지에 리프레쉬 토큰 저장
       setIsLoggedIn(true);
 

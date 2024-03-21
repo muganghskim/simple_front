@@ -10,11 +10,15 @@ const LoginSuccess: React.FC = () => {
     const params = new URLSearchParams(location.search);
     const jwt = params.get("token");
     const email = params.get("email");
+    const img = params.get("img");
 
     if (jwt && email) {
       // Save JWT token to local storage
       localStorage.setItem("token", jwt);
       localStorage.setItem("email", email);
+      if(img){
+        localStorage.setItem("img", img);
+      }
 
       console.log(localStorage.getItem("token"));
 
