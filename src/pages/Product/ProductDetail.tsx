@@ -93,6 +93,7 @@ export default function ProductDetail() {
   // const [user, setUser] = useState<String | null>(null);
   // const [open, setOpen] = useRecoilState(isOpenState);
   const userYn = localStorage.getItem("email");
+  const token = localStorage.getItem("token");
 
   console.log("email", userYn);
 
@@ -120,7 +121,12 @@ export default function ProductDetail() {
 
   const getCart = async () => {
     const responseCart = await axios.get(
-      `http://localhost:8096/api/cart/${productData.userEmail}`
+      `http://localhost:8096/api/cart/${productData.userEmail}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
     );
     setCart(responseCart.data);
   };
@@ -128,7 +134,12 @@ export default function ProductDetail() {
   const handleCreateItem = async () => {
     const responseSave = await axios.post(
       "http://localhost:8096/api/cart/create",
-      productData
+      productData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
     );
   };
 
@@ -158,7 +169,7 @@ export default function ProductDetail() {
   return (
     <>
       <Header></Header>
-      <div className="ml-64 bg-white">
+      <div className="sm:ml-64 sm:mt-1 mt-20 bg-white">
         <div className="pt-6">
           <nav aria-label="Breadcrumb">
             <ol

@@ -55,6 +55,7 @@ function AppRoutes() {
         <Route path="/admin" element={<Admin />} /> */}
         {/*  추가적인 라우트를 이곳에 작성해주세요  */}
       </Routes>
+     
     </BrowserRouter>
   );
 }

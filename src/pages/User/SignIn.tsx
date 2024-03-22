@@ -50,7 +50,7 @@ export default function SignIn() {
         ```
       */}
       <Header></Header>
-      <div className="ml-64 mt-32 flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="sm:ml-64 sm:mt-1 mt-32 flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"

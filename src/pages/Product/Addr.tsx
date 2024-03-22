@@ -19,6 +19,7 @@ interface AddrProps {
 const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
 
   const userYn = localStorage.getItem("email");
+  const token = localStorage.getItem("token");
 
   const deliveryData = {
     userEmail: userYn
@@ -77,7 +78,13 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
     const handleCreateAddress = async () => {
       const responseSave = await axios.post(
         "http://localhost:8096/api/delivery/add",
-        userAddress
+        userAddress,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+   
       );
       console.log("User address added successfully.");
     // 주소 추가 완료 후 onAddressAdded 콜백 호출
@@ -100,7 +107,7 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
 
   return (
     <>
-      <div className="ml-64 space-y-12 pr-12">
+      <div className="sm:ml-64 sm:mt-1 mt-20 space-y-12 pr-12">
         <div className="border-b border-gray-900/10 pb-12">
           <button
             className="mt-8 text-base font-semibold leading-7 text-gray-900"

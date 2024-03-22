@@ -73,7 +73,7 @@ const Header: React.FC = () => {
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
-              <div className="mx-auto h-screen max-w-7xl px-2 sm:px-6 lg:px-8">
+              <div className="mx-auto sm:h-screen max-w-7xl px-2 sm:px-8">
                 <div className="relative flex flex-col h-16 items-center justify-between">
                   <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     {/* Mobile menu button*/}
@@ -94,8 +94,8 @@ const Header: React.FC = () => {
                       )}
                     </Disclosure.Button>
                   </div>
-                  <div className="flex flex-1 flex-col items-center justify-center sm:items-stretch sm:justify-start">
-                    <div className="flex flex-shrink-0 flex-col items-center my-8">
+                  <div className="flex flex-1 sm:flex-col sm:ml-0 ml-60 sm:mt-0 mt-4 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div className="flex flex-shrink-0 hidden sm:block flex-col items-center my-8">
                       <img
                         className="h-8 w-auto"
                         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
@@ -140,15 +140,15 @@ const Header: React.FC = () => {
                             <Menu.Items className="absolute left-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                               <Menu.Item>
                                 {({ active }) => (
-                                  <a
-                                    href="/profile"
+                                  <Link
+                                    to="/profile"
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
                                     )}
                                   >
                                     Your Profile
-                                  </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                               {/* <Menu.Item>
@@ -163,8 +163,8 @@ const Header: React.FC = () => {
                             </Menu.Item> */}
                               <Menu.Item>
                                 {({ active }) => (
-                                  <a
-                                    href="/"
+                                  <Link
+                                    to="/"
                                     onClick={logout}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
@@ -172,7 +172,7 @@ const Header: React.FC = () => {
                                     )}
                                   >
                                     Sign out
-                                  </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             </Menu.Items>
@@ -180,7 +180,7 @@ const Header: React.FC = () => {
                         </Menu>
                       ) : (
                         // 로그인 버튼
-                        <a href="/signin">
+                        <Link to="/signin">
                           <button
                             type="button"
                             className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ml-2"
@@ -192,9 +192,13 @@ const Header: React.FC = () => {
                               aria-hidden="true"
                             />
                           </button>
-                        </a>
+                        </Link>
                       )}
                     </div>
+
+
+
+                    
 
                     {/* nav 부분 */}
 
@@ -221,31 +225,55 @@ const Header: React.FC = () => {
                 </div>
               </div>
 
-              <Disclosure.Panel className="sm:hidden">
-                <div className="space-y-1 px-2 pb-3 pt-2">
+              <Disclosure.Panel className="sm:hidden w-full">
+                <div className="space-y-1 flex px-2 pb-3 pt-2">
                   {nav.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as="a"
-                      href={item.href}
-                      className={classNames(
-                        item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "block rounded-md px-3 py-2 text-base font-medium"
-                      )}
-                      aria-current={item.current ? "page" : undefined}
-                    >
-                      {item.name}
-                    </Disclosure.Button>
+                    // <Disclosure.Button
+                    //   key={item.name}
+                    //   as="a"
+                    //   href={item.href}
+                    //   className={classNames(
+                    //     item.current
+                    //       ? "bg-gray-900 text-white"
+                    //       : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    //     "block rounded-md px-3 py-2 text-base font-medium"
+                    //   )}
+                    //   aria-current={item.current ? "page" : undefined}
+                    // >
+                    //   {item.name}
+                    // </Disclosure.Button>
+                    <Link
+                    key={item.id}
+                    to={item.href}
+                    className={classNames(
+                      item.current
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "rounded-md px-3 py-2 text-sm font-medium"
+                    )}
+                    aria-current={item.current ? "page" : undefined}
+                  >
+                    {item.name}
+                  </Link>
                   ))}
                 </div>
               </Disclosure.Panel>
+              
             </>
           )}
         </Disclosure>
+        <div className="fixed hidden sm:block bottom-10 w-48 flex-col items-center justify-center space-y-4 ">
+          <div>
+            <p className="text-sm text-center text-gray-500">&copy; 2024 Your Company.<br></br> All rights reserved.</p>
+            <p className="text-sm text-center text-gray-500">Made with <span className="text-red-500">&hearts;</span><br></br> by Your Team</p>
+          </div>
+          <div className="flex flex-col items-center space-y-2">
+            <a href="#" className="text-sm text-gray-500">Privacy Policy</a>
+            <a href="#" className="text-sm text-gray-500">Terms of Service</a>
+          </div>
+        </div>
       </div>
-      <Footer></Footer>
+    
     </>
   );
 };

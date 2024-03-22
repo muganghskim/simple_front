@@ -22,6 +22,7 @@ export default function Support() {
 
   const [page, setPage] = useState(0); // 현재 페이지 번호 (0부터 시작)
   const [pageSize, setPageSize] = useState(10); // 페이지 크기
+  const [pageGroupStart, setPageGroupStart] = useState(0); // 현재 페이지 그룹의 시작 페이지 번호
   const [show, setShow] = useState(false);
 
   const token = localStorage.getItem("token");
@@ -29,7 +30,7 @@ export default function Support() {
   // 전체 조회 데이터를 로딩
   useEffect(() => {
     fetchAllSupports();
-  }, []);
+  }, [page]);
 
   // 전체 조회
   const fetchAllSupports = async () => {
@@ -38,21 +39,22 @@ export default function Support() {
       // `pageNumber`는 일반적으로 0부터 시작하지만,
       // UI에서 사용자에게 표시하는 페이지 번호는 1부터 시작할 수 있으므로
       // 요청을 보낼 때는 페이지 번호에서 1을 빼줘야 할 수도 있습니다.
-      const params = {
-        page: page, // 또는 `page: page - 1` 이 필요한 경우
-        size: pageSize,
-        paged: true,
-        "sort.sorted": true, // 또는 false, 정렬 여부
-        "sort.unsorted": false, // 또는 true, 정렬하지 않을 여부
-        unpaged: false, // 페이지네이션을 사용하지 않는 경우 true
-        // 추가적인 정렬 파라미터 예시: 'sort': 'createdAt,desc'
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      };
       const response = await axios.get(
-        `http://localhost:8096/api/admin/supportAll`,
-        params
+        `http://localhost:8096/api/admin/supportAll`
+        , {
+          params: { // 여기에 쿼리 파라미터들을 넣어줘야 합니다.
+            page: page, // 또는 `pageNumber: page - 1` 이 필요한 경우
+            size: pageSize,
+            paged: true,
+            "sort.sorted": true, // 또는 false
+            "sort.unsorted": false, // 또는 true
+            unpaged: false,
+            'sort': 'createdAt,desc' // 추가적인 정렬 파라미터 예시
+          },
+          headers: { // 헤더는 여기에
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
 
       setSetSupport(response.data.content);
@@ -100,6 +102,20 @@ export default function Support() {
     }
   };
 
+  // 다음 버튼 페이지 그룹 업데이트 핸들러
+  const handleNextPageGroup = () => {
+    const newStart = pageGroupStart + pageSize;
+    setPageGroupStart(newStart);
+    setPage(newStart); // 현재 페이지도 그룹의 첫 번째 페이지로 설정
+  };
+
+  // 이전 버튼 페이지 그룹 업데이트 핸들러
+  const handlePreviousPageGroup = () => {
+    const newStart = Math.max(pageGroupStart - pageSize, 0); // 0 이하로 내려가지 않도록
+    setPageGroupStart(newStart);
+    setPage(newStart + pageSize - 1); // 페이지 그룹의 마지막 페이지로 이동
+  };
+
 
 
   
@@ -116,7 +132,7 @@ export default function Support() {
   return (
     <>
       <Header></Header>
-      <div className="ml-64 space-y-12 pr-12">
+      <div className="sm:ml-64 sm:mt-1 mt-20 space-y-12 pr-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base mt-10 font-semibold leading-7 text-gray-900">
             문의 관리
@@ -217,24 +233,39 @@ export default function Support() {
                   </table>
                 </div>
 
-                {/* <div className="sm:col-span-4">
-                  <button
-                    onClick={() =>
-                      setPage((prevPage) => Math.max(prevPage - 1, 0))
-                    }
-                    disabled={page === 0}
-                    className="px-4 py-2 border rounded-md"
-                  >
-                    Prev
-                  </button>
-                  <span>Page {page + 1}</span>
-                  <button
-                    onClick={() => setPage((prevPage) => prevPage + 1)}
-                    className="px-4 py-2 border rounded-md"
-                  >
-                    Next
-                  </button>
-                </div> */}
+                <div className="flex items-center space-x-2">
+                    {/* 이전 버튼 */}
+                    <button
+                      disabled={pageGroupStart <= 0} // 첫 번째 페이지 그룹에서는 비활성화
+                      className={`px-4 py-2 text-sm font-medium rounded-md ${
+                        pageGroupStart > 0 ? 'bg-gray-200 text-gray-800' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                      }`}
+                      onClick={handlePreviousPageGroup}
+                    >
+                      이전
+                    </button>
+
+                    {/* 페이지 번호 버튼 */}
+                    {Array.from({ length: pageSize }, (_, i) => pageGroupStart + i + 1).map((pageNum) => (
+                      <button
+                        key={pageNum}
+                        className={`px-4 py-2 text-sm font-medium rounded-md ${
+                          page === pageNum - 1 ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                        }`}
+                        onClick={(e) => setPage(pageNum - 1)}
+                      >
+                        {pageNum}
+                      </button>
+                    ))}
+
+                    {/* 다음 버튼 */}
+                    <button
+                      className="px-4 py-2 text-sm font-medium rounded-md bg-gray-200 text-gray-800"
+                      onClick={handleNextPageGroup}
+                    >
+                      다음
+                    </button>
+                  </div>
               </>
             )}
           </div>

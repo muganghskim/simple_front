@@ -22,6 +22,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(true); // 로딩 상태
 
   const userYn = localStorage.getItem("email");
+  const token = localStorage.getItem("token");
 
   const profileData = {
     userEmail: userYn
@@ -65,7 +66,7 @@ export default function Profile() {
     formData.append("userPhn", event.target.userPhn.value);
     formData.append("file", event.target.file.files[0]);
 
-    const token = localStorage.getItem("token");
+   
 
     try {
       const response = await axios.post(
@@ -96,7 +97,7 @@ export default function Profile() {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
-    const token = localStorage.getItem("token");
+    
     try {
       const response = await axios.post(
         "http://localhost:8096/api/support/add",
@@ -122,7 +123,12 @@ export default function Profile() {
   const getSupport = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8096/api/support/all/${profileData.userEmail}`
+        `http://localhost:8096/api/support/all/${profileData.userEmail}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
       setSupport(response.data);
     } catch (error: any) {
@@ -134,7 +140,7 @@ export default function Profile() {
     <>
       <Header></Header>
       <form onSubmit={handleSubmit1} encType="multipart/form-data">
-        <div className="ml-64 space-y-12 pr-12">
+        <div className="sm:ml-64 sm:mt-1 mt-20 space-y-12 pr-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="mt-10 text-base font-semibold leading-7 text-gray-900">프로필</h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">

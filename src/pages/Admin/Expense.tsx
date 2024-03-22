@@ -59,7 +59,7 @@ export default function Expense() {
     <>
       <Header></Header>
       <form onSubmit={handleSubmit}>
-        <div className="ml-64 space-y-12 pr-12">
+        <div className="sm:ml-64 sm:mt-1 mt-20 space-y-12 pr-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base mt-10 font-semibold leading-7 text-gray-900">
               비용 지출

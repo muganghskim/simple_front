@@ -119,6 +119,7 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
   // });
 
   const userYn = localStorage.getItem("email");
+  const token = localStorage.getItem("token");
 
   const deliveryData = {
     userEmail: userYn || undefined
@@ -268,7 +269,12 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
     }));
 
     axios
-      .post("http://localhost:8096/api/orderItem/create", orderItemData)
+      .post("http://localhost:8096/api/orderItem/create", orderItemData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         console.log("Order items created successfully:", response.data);
         // 생성된 주문 항목의 ID들을 처리하거나 다음 단계로 진행할 수 있습니다.
@@ -293,7 +299,12 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
       console.log("transactionData", transactionData);
 
       axios
-        .post("http://localhost:8096/api/transaction/create", transactionData)
+        .post("http://localhost:8096/api/transaction/create", transactionData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
         .then((response) => {
           console.log("Transaction created successfully:", response.data);
         })

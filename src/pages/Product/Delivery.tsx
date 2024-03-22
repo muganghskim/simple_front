@@ -11,10 +11,13 @@ import Header from "../Common/Header";
 import Addr from "./Addr";
 import axios from "axios";
 import IamportPayments from "./IamportPayments";
+import { useRecoilState } from "recoil";
+import { cartState } from "../../recoil/atoms/cart";
 //TODO : 배송지가 없을때 예외처리
 
 export default function Delivery() {
   const [deliverys, setDeliverys] = useState<Delivery[]>([]);
+  const [cart, setCart] = useRecoilState(cartState);
   const [selectedDelivery, setSelectedDelivery] = useState<Delivery | null>(
     null
   );
@@ -23,6 +26,7 @@ export default function Delivery() {
   //   number | null
   // >(null);
   const userYn = localStorage.getItem("email");
+  const token = localStorage.getItem("token");
 
   const deliveryData = {
     userEmail: userYn
@@ -39,6 +43,12 @@ export default function Delivery() {
     const getAllDeliverys = async () => {
       const response = await axios.get(
         `http://localhost:8096/api/delivery/${deliveryData.userEmail}`
+        ,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
       setDeliverys(response.data);
     };
@@ -51,6 +61,12 @@ export default function Delivery() {
     try {
       const response = await axios.get(
         `http://localhost:8096/api/delivery/${deliveryData.userEmail}`
+        ,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
       setDeliverys(response.data);
     } catch (error) {
@@ -76,13 +92,26 @@ export default function Delivery() {
 
   const handleAddressDelete = useCallback(async (deliverId: any) => {
     try {
-      const response = await axios.delete(`http://localhost:8096/api/delivery/${deliverId}`);
+      const response = await axios.delete(`http://localhost:8096/api/delivery/${deliverId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       handleAddressAdded(); // 상태 업데이트 함수
     } catch (error) {
       console.error("Error deleting delivery data:", error);
     }
   }, []); // 의존성 배열, 여기서는 빈 배열을 사용했습니다. 필요에 따라 업데이트하세요.
   
+
+    // 총 가격을 저장할 변수 초기화
+    let totalPrice = 0;
+
+    // 각 상품의 수량과 가격을 곱하고 총 가격에 더함
+    cart.forEach((item) => {
+      totalPrice += item.pdQuantity * item.pdPrice;
+    });
 
   return (
     <>
@@ -92,7 +121,7 @@ export default function Delivery() {
 
           <Addr onAddressAdded={handleAddressAdded}></Addr>
 
-          <div className="ml-64 space-y-12 pr-12">
+          <div className="sm:ml-64 sm:mt-1 mt-20 space-y-12 pr-12">
             <div className="border-b border-gray-900/10 pb-12">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
                 배송지 목록
@@ -140,6 +169,25 @@ export default function Delivery() {
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 장바구니에서 결제할 상품 리스트입니다.
               </p>
+
+              <div className="flex overflow-x-auto space-x-4 p-4">
+              {cart.map((product) => (
+                <div key={product.pdNo} className="flex-none w-60 rounded overflow-hidden shadow-lg">
+                  <img className="w-full" src={product.pdImg} alt="Product Image"></img>
+                  <div className="px-6 py-4">
+                    <div className="font-bold text-xl mb-2">{product.pdName}</div>
+                    <p className="text-gray-700 text-base">
+                      수량: {product.pdQuantity}
+                    </p>
+                    <p className="text-gray-700 text-base">
+                      가격: {product.pdPrice}
+                    </p>
+                  </div>
+                </div>
+              ))}
+             
+              </div>
+              <p className="mt-5">총 구매 가격: {totalPrice}</p>
 
               <div className="mt-10 space-y-10"></div>
             </div>

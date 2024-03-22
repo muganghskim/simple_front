@@ -49,14 +49,13 @@ interface UpdateCart {
 // ];
 
 export default function Cart(props: any) {
-  // const [open, setOpen] = useRecoilState(isOpenState);
-  // const [open, setOpen] = useState(false);
-  // let [isOpen, setIsOpen] = useState(true);
+ 
   const [cart, setCart] = useRecoilState(cartState);
-  // const [cartFlag, setCartFlag] = useState(false);
+  
   const { isOpen, onClose, product } = props;
 
   const userYn = localStorage.getItem("email");
+  const token = localStorage.getItem("token");
 
   const productData = {
     // pdNo: product?.pdNo,
@@ -75,17 +74,27 @@ export default function Cart(props: any) {
     console.log(updateCart);
     const responseRemove = await axios.post(
       "http://localhost:8096/api/cart/remove",
-      updateCart
+      updateCart,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
     );
     getCart();
-    // setCartFlag(!cartFlag);
-    // console.log(cartFlag);
+
     console.log("remove", responseRemove.data);
   };
 
   const getCart = async () => {
     const responseCart = await axios.get(
       `http://localhost:8096/api/cart/${productData.userEmail}`
+      ,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
     );
     setCart(responseCart.data);
   };
