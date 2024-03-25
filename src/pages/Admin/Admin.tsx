@@ -57,6 +57,15 @@ export default function Admin() {
             <div className="sm:col-span-4">
               <Link
                 className="block text-sm font-medium leading-6 text-gray-900 hover:underline hover:text-blue-500"
+                to="/admin/order"
+              >
+                주문 관리
+              </Link>
+            </div>
+
+            <div className="sm:col-span-4">
+              <Link
+                className="block text-sm font-medium leading-6 text-gray-900 hover:underline hover:text-blue-500"
                 to="/admin/inven"
               >
                 재고 관리

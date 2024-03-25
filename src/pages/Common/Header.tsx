@@ -147,7 +147,20 @@ const Header: React.FC = () => {
                                       "block px-4 py-2 text-sm text-gray-700"
                                     )}
                                   >
-                                    Your Profile
+                                    프로필
+                                  </Link>
+                                )}
+                              </Menu.Item>
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <Link
+                                    to="/orderview"
+                                    className={classNames(
+                                      active ? "bg-gray-100" : "",
+                                      "block px-4 py-2 text-sm text-gray-700"
+                                    )}
+                                  >
+                                    주문내역
                                   </Link>
                                 )}
                               </Menu.Item>
@@ -171,7 +184,7 @@ const Header: React.FC = () => {
                                       "block px-4 py-2 text-sm text-gray-700"
                                     )}
                                   >
-                                    Sign out
+                                    로그아웃
                                   </Link>
                                 )}
                               </Menu.Item>
