@@ -477,7 +477,7 @@ export default function Profit() {
                   )}
 
                   {activeView === 'mon' && (
-                    <div className="flex justify-center items-center space-x-2">
+                    <div className="flex items-center space-x-2">
                     {/* 이전 버튼 */}
                     <button
                       disabled={mpageGroupStart <= 0} // 첫 번째 페이지 그룹에서는 비활성화
@@ -513,7 +513,7 @@ export default function Profit() {
                   )}
 
                   {activeView === 'day' && (
-                    <div className="flex justify-center items-center space-x-2">
+                    <div className="flex items-center space-x-2">
                     {/* 이전 버튼 */}
                     <button
                       disabled={dpageGroupStart <= 0} // 첫 번째 페이지 그룹에서는 비활성화

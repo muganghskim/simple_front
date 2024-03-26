@@ -154,7 +154,11 @@ export default function Inven() {
                   </table>
                 </div>
 
-                <div className="flex items-center space-x-2">
+                
+              </>
+            )}
+          </div>
+          <div className="flex mt-10 items-center space-x-2">
                     {/* 이전 버튼 */}
                     <button
                       disabled={pageGroupStart <= 0} // 첫 번째 페이지 그룹에서는 비활성화
@@ -187,9 +191,6 @@ export default function Inven() {
                       다음
                     </button>
                   </div>
-              </>
-            )}
-          </div>
         </div>
       </div>
     </>

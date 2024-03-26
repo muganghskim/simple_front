@@ -24,6 +24,7 @@ export default function Support() {
   const [pageSize, setPageSize] = useState(10); // 페이지 크기
   const [pageGroupStart, setPageGroupStart] = useState(0); // 현재 페이지 그룹의 시작 페이지 번호
   const [show, setShow] = useState(false);
+  const [selectedSupportId, setSelectedSupportId] = useState(null);
 
   const token = localStorage.getItem("token");
 
@@ -68,7 +69,8 @@ export default function Support() {
     }
   };
 
-  const handleAnswer = () => {
+  const handleAnswer = (supportId: any) => {
+    setSelectedSupportId(supportId)
     setShow(true);
   }
 
@@ -198,8 +200,9 @@ export default function Support() {
                           <td className="px-5 py-2 border-b border-gray-200 bg-white text-sm">
                             {s.updatedAt}
                           </td>
-                          <button type="button" onClick={handleAnswer}>답변하기</button>
-                          {show && (
+                          <td className="px-5 py-2 border-b border-gray-200 bg-white text-sm">
+                          <button type="button" onClick={() => handleAnswer(s.supportId)}>답변하기</button>
+                          {show && selectedSupportId === s.supportId && (
                                 <form onSubmit={handleAnswerSubmit} className="fixed inset-0 z-10 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
                                 <div className="relative w-auto max-w-md p-6 my-8 mx-auto bg-white rounded-lg shadow-lg">
                                     <div className="text-center">
@@ -208,7 +211,7 @@ export default function Support() {
                                     </h3>
                                     </div>
                                     <div className="mt-4">
-                                    <input name="supportId" hidden>{s.supportId}</input>
+                                    <input name="supportId" hidden value={s.supportId}></input>
                                     <input
                                         type="text"
                                         name="answer"
@@ -227,6 +230,7 @@ export default function Support() {
                                 </div>
                                 </form>
                             )}
+                          </td>
                         </tr>
                       ))}
                     </tbody>

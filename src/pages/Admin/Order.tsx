@@ -28,6 +28,7 @@ export default function Order() {
   const [pageSize, setPageSize] = useState(10); // 페이지 크기
   const [pageGroupStart, setPageGroupStart] = useState(0); // 현재 페이지 그룹의 시작 페이지 번호
   const [show, setShow] = useState(false);
+  const [selectedOrderItemId, setSelectedOrderItemId] = useState(null);
 
   const token = localStorage.getItem("token");
 
@@ -72,9 +73,10 @@ export default function Order() {
     }
   };
 
-  const handleAnswer = () => {
-    setShow(true);
-  }
+  const handleAnswer = (orderItemId: any) => {
+    setSelectedOrderItemId(orderItemId);
+    setShow(true); // 폼을 보여주기 위해
+};
 
   // 주문 상태 변경
   const handleChangeOrderStat = async (event: any) => {
@@ -182,6 +184,9 @@ export default function Order() {
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                           상태 변경 날짜
                         </th>
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                          상태 변경 하기
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -214,8 +219,9 @@ export default function Order() {
                           <td className="px-5 py-2 border-b border-gray-200 bg-white text-sm">
                             {s.updatedAt}
                           </td>
-                          <button type="button" onClick={handleAnswer}>상태변경하기</button>
-                          {show && (
+                          <td className="px-5 py-2 border-b border-gray-200 bg-white text-sm">
+                          <button type="button" onClick={() => handleAnswer(s.orderItemId)}>상태변경하기</button>
+                          {show && selectedOrderItemId === s.orderItemId && (
                                 <form onSubmit={handleChangeOrderStat} className="fixed inset-0 z-10 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
                                 <div className="relative w-auto max-w-md p-6 my-8 mx-auto bg-white rounded-lg shadow-lg">
                                     <div className="text-center">
@@ -224,7 +230,7 @@ export default function Order() {
                                     </h3>
                                     </div>
                                     <div className="mt-4">
-                                    <input name="orderItemId" hidden>{s.orderItemId}</input>
+                                    <input type="hidden" name="orderItemId" value={s.orderItemId} />
                                     <input
                                         type="text"
                                         name="stat"
@@ -243,13 +249,18 @@ export default function Order() {
                                 </div>
                                 </form>
                             )}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
 
-                <div className="flex items-center space-x-2">
+              
+              </>
+            )}
+          </div>
+          <div className="flex mt-10 items-center space-x-2">
                     {/* 이전 버튼 */}
                     <button
                       disabled={pageGroupStart <= 0} // 첫 번째 페이지 그룹에서는 비활성화
@@ -282,9 +293,6 @@ export default function Order() {
                       다음
                     </button>
                   </div>
-              </>
-            )}
-          </div>
         </div>
       </div>
     </>

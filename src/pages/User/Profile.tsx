@@ -148,7 +148,7 @@ export default function Profile() {
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <input type='text' name='userEmail' hidden>{profileData.userEmail}</input>
+              <input type='text' name='userEmail' hidden value={profileData.userEmail? profileData.userEmail: ""}></input>
               <div className="sm:col-span-4">
                 <label
                   htmlFor="userName"
@@ -311,7 +311,7 @@ export default function Profile() {
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
            
-            <input id='userEmail' name='userEmail' hidden>{profileData.userEmail}</input>
+            <input id='userEmail' name='userEmail' hidden value={profileData.userEmail? profileData.userEmail: ""}></input>
             <div className="col-span-full">
                 <label
                   htmlFor="question"
