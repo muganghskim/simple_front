@@ -69,7 +69,7 @@ const Header: React.FC = () => {
   };
   return (
     <>
-      <div className="fixed left-0 top-0">
+      <div className="fixed sm:w-48 w-full left-0 top-0">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
@@ -95,7 +95,7 @@ const Header: React.FC = () => {
                     </Disclosure.Button>
                   </div>
                   <div className="flex flex-1 sm:flex-col sm:ml-0 ml-60 sm:mt-0 mt-4 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div className="flex flex-shrink-0 hidden sm:block flex-col items-center my-8">
+                    <div className="flex-shrink-0 hidden sm:block flex-col items-center sm:flex sm:justify-center my-8">
                       <img
                         className="h-8 w-auto"
                         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
@@ -105,7 +105,7 @@ const Header: React.FC = () => {
 
                     {/* 로그인, 프로필 부분 */}
 
-                    <div className="mb-10 flex justify-center">
+                    <div className="mb-10 flex mr-20 sm:mr-0 justify-center">
                       <button
                         type="button"
                         className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -239,7 +239,7 @@ const Header: React.FC = () => {
               </div>
 
               <Disclosure.Panel className="sm:hidden w-full">
-                <div className="space-y-1 flex px-2 pb-3 pt-2">
+                <div className="flex px-2 pb-3 pt-2">
                   {nav.map((item) => (
                     // <Disclosure.Button
                     //   key={item.name}
