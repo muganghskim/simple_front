@@ -48,7 +48,7 @@ export default function CategoryInsert() {
       <Header></Header>
       <form onSubmit={handleSubmit}>
         <div className="sm:ml-64 sm:mt-1 mt-20 space-y-12 pr-12">
-          <div className="border-b border-gray-900/10 pb-12">
+          <div className="mx-auto px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8 border-b border-gray-900/10 pb-12">
             <h2 className="text-base mt-10 font-semibold leading-7 text-gray-900">
               카테고리
             </h2>

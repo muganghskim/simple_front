@@ -141,7 +141,7 @@ export default function Profile() {
       <Header></Header>
       <form onSubmit={handleSubmit1} encType="multipart/form-data">
         <div className="sm:ml-64 sm:mt-1 mt-20 space-y-12 pr-12">
-          <div className="border-b border-gray-900/10 pb-12">
+          <div className="mx-auto px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8 border-b border-gray-900/10 pb-12">
             <h2 className="mt-10 text-base font-semibold leading-7 text-gray-900">프로필</h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
               당신의 프로필을 업데이트 해주세요
@@ -302,8 +302,8 @@ export default function Profile() {
       </form> */}
 
       <form onSubmit={handleSubmit3}>
-        <div className="ml-64 space-y-12 pr-12">
-          <div className="border-b border-gray-900/10 pb-12">
+        <div className="sm:ml-64 sm:mt-1 mt-20 space-y-12 pr-12">
+          <div className="mx-auto px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8 border-b border-gray-900/10 pb-12">
             <h2 className="mt-10 text-base font-semibold leading-7 text-gray-900">문의하기</h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
               지원을 받을 수 있습니다.
