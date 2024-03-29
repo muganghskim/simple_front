@@ -18,25 +18,25 @@ import Footer from "../Common/Footer";
 const nav = [
   {
     id: 1,
-    name: "Home",
+    name: "소개",
     href: "/",
     current: false
   },
   {
     id: 2,
-    name: "About",
+    name: "친환경",
     href: "/about",
     current: false
   },
   {
     id: 3,
-    name: "Product",
+    name: "제품",
     href: "/product",
     current: false
   },
   {
     id: 4,
-    name: "Notice",
+    name: "공지사항",
     href: "/notice",
     current: false
   }
@@ -97,8 +97,8 @@ const Header: React.FC = () => {
                   <div className="flex flex-1 sm:flex-col sm:ml-0 ml-60 sm:mt-0 mt-4 items-center justify-center sm:items-stretch sm:justify-start">
                     <div className="flex-shrink-0 hidden sm:block flex-col items-center sm:flex sm:justify-center my-8">
                       <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        className="h-32 w-auto"
+                        src="/img/logo_remove.png"
                         alt="Your Company"
                       />
                     </div>
