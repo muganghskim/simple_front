@@ -24,13 +24,13 @@ const nav = [
   },
   {
     id: 2,
-    name: "친환경",
+    name: "마일스톤",
     href: "/about",
     current: false
   },
   {
     id: 3,
-    name: "제품",
+    name: "쇼핑몰",
     href: "/product",
     current: false
   },
@@ -277,8 +277,8 @@ const Header: React.FC = () => {
         </Disclosure>
         <div className="fixed hidden sm:block bottom-10 w-48 flex-col items-center justify-center space-y-4 ">
           <div>
-            <p className="text-sm text-center text-gray-500">&copy; 2024 Your Company.<br></br> All rights reserved.</p>
-            <p className="text-sm text-center text-gray-500">Made with <span className="text-red-500">&hearts;</span><br></br> by Your Team</p>
+            <p className="text-sm text-center text-gray-500">&copy; 2024 Hide Carbon.<br></br> All rights reserved.</p>
+            <p className="text-sm text-center text-gray-500">Made with <span className="text-red-500">&hearts;</span><br></br> by Hs Kim</p>
           </div>
           <div className="flex flex-col items-center space-y-2">
             <a href="#" className="text-sm text-gray-500">Privacy Policy</a>
