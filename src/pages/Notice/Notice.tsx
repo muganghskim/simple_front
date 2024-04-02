@@ -90,7 +90,7 @@ export default function Notice() {
     <>
 
       <Header></Header>
-      <div className="sm:ml-64 sm:mt-1 mt-20 bg-white py-24 sm:py-32">
+      <div className="sm:ml-64 2xl:ml-32 mt-20 bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">쇼핑몰 블로그</h2>

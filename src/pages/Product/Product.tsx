@@ -74,7 +74,7 @@ const Product: React.FC = () => {
         <p className="h-screen fixed">아아</p> */}
       {/* <Header /> */}
       {/* </div> */}
-      <div className="sm:ml-64 sm:mt-1 mt-20 overflow-auto bg-white">
+      <div className="sm:ml-64 2xl:ml-32 mt-20 overflow-auto bg-white">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h2 className="text-2xl mb-5 font-bold tracking-tight text-gray-900">
             모든 상품
