@@ -61,7 +61,7 @@ export default function OrderView() {
   return (
     <>
       <Header></Header>
-      <div className="sm:ml-64 sm:mt-1 mt-20 space-y-12 pr-12">
+      <div className="sm:ml-64 2xl:ml-32 mt-20 space-y-12 pr-12">
         <div className="mx-auto px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8 border-b border-gray-900/10 pb-12">
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 {/* 데이터 로딩 및 테이블 렌더링 */}

@@ -169,7 +169,7 @@ export default function ProductDetail() {
   return (
     <>
       <Header></Header>
-      <div className="sm:ml-64 sm:mt-1 mt-20 bg-white">
+      <div className="sm:ml-64 2xl:ml-32 mt-20 bg-white">
         <div className="pt-6">
           <nav aria-label="Breadcrumb">
             <ol

@@ -134,7 +134,7 @@ export default function Support() {
   return (
     <>
       <Header></Header>
-      <div className="sm:ml-64 sm:mt-1 mt-20 space-y-12 pr-12">
+      <div className="sm:ml-64 2xl:ml-32 mt-20 space-y-12 pr-12">
         <div className="mx-auto px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8 border-b border-gray-900/10 pb-12">
           <h2 className="text-base mt-10 font-semibold leading-7 text-gray-900">
             문의 관리
