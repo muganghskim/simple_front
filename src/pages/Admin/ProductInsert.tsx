@@ -38,7 +38,7 @@ export default function ProductInsert() {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/admin/registerProduct`,
+        `${import.meta.env.VITE_APP_API_URL}/admin/registerProduct`,
         formData,
         {
           headers: {

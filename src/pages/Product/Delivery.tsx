@@ -42,7 +42,7 @@ export default function Delivery() {
   useEffect(() => {
     const getAllDeliverys = async () => {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/delivery/${deliveryData.userEmail}`
+        `${import.meta.env.VITE_APP_API_URL}/api/delivery/${deliveryData.userEmail}`
         ,
         {
           headers: {
@@ -60,7 +60,7 @@ export default function Delivery() {
     // 주소가 추가되면 Delivery 컴포넌트를 다시 렌더링하기 위해 데이터를 다시 가져옴
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/delivery/${deliveryData.userEmail}`
+        `${import.meta.env.VITE_APP_API_URL}/api/delivery/${deliveryData.userEmail}`
         ,
         {
           headers: {
@@ -92,7 +92,7 @@ export default function Delivery() {
 
   const handleAddressDelete = useCallback(async (deliverId: any) => {
     try {
-      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/api/delivery/${deliverId}`,
+      const response = await axios.delete(`${import.meta.env.VITE_APP_API_URL}/api/delivery/${deliverId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`

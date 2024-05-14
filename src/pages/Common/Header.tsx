@@ -54,7 +54,7 @@ const Header: React.FC = () => {
   // const [isSignIn, setIsSignIn] = useState(false);
   const logout = async () => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/logout`);
+      await axios.post(`${import.meta.env.VITE_APP_API_URL}/api/logout`);
 
       // 로컬 스토리지에서 토큰 제거
       localStorage.removeItem("token");

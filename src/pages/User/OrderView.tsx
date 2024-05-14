@@ -45,7 +45,7 @@ export default function OrderView() {
   const getOrders = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/orderItem/all/${profileData.userEmail}`,
+        `${import.meta.env.VITE_APP_API_URL}/api/orderItem/all/${profileData.userEmail}`,
         {
           headers: {
             Authorization: `Bearer ${token}`

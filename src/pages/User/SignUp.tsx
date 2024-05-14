@@ -32,7 +32,7 @@ export default function SignUp() {
   
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/signup`,
+        `${import.meta.env.VITE_APP_API_URL}/api/signup`,
         data
       );
   
@@ -72,7 +72,7 @@ export default function SignUp() {
   const handleEmailAuthentication = () => {
     setLoading(true);
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/send-verification-email`, { email })
+      .post(`${import.meta.env.VITE_APP_API_URL}/api/send-verification-email`, { email })
       .then((response) => {
         console.log("send Authentication successful", response.data);
         // Hide loading indicator
@@ -95,7 +95,7 @@ export default function SignUp() {
 
   const handleEmailCodeAuthentication = () => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/verify-email`, { email, code })
+      .post(`${import.meta.env.VITE_APP_API_URL}/api/verify-email`, { email, code })
       .then((response) => {
         console.log("Authentication successful", response.data);
         alert("인증에 성공하였습니다.");

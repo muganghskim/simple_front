@@ -77,7 +77,7 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
     console.log("userAddress", userAddress);
     const handleCreateAddress = async () => {
       const responseSave = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/delivery/add`,
+        `${import.meta.env.VITE_APP_API_URL}/api/delivery/add`,
         userAddress,
         {
           headers: {

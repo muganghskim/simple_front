@@ -10,6 +10,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   // TODO 요청 헤더에 토큰 넣기, 관리자 페이지 블락
 
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
@@ -18,7 +19,7 @@ export default function SignIn() {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/login`,
+        `${import.meta.env.VITE_APP_API_URL}/api/login`,
         data
       );
       const { username, email, img, token, refreshToken } = response.data;
@@ -144,14 +145,14 @@ export default function SignIn() {
           <div className="mt-4 flex justify-center">
             <ul className="flex w-full justify-around">
               <li>
-                <a href={`${process.env.REACT_APP_API_URL}/oauth2/authorization/google`}>
+                <a href={`${import.meta.env.VITE_APP_API_URL}/oauth2/authorization/google`}>
                   <i className="google-i">
                     <img src={"/img/google.png"} alt="구글 로그인 이미지"></img>
                   </i>
                 </a>
               </li>
               <li>
-                <a href={`${process.env.REACT_APP_API_URL}/oauth2/authorization/naver`}>
+                <a href={`${import.meta.env.VITE_APP_API_URL}/oauth2/authorization/naver`}>
                   <i className="naver-i">
                     <img
                       src={"/img/naver.png"}
@@ -161,7 +162,7 @@ export default function SignIn() {
                 </a>
               </li>
               <li>
-                <a href={`${process.env.REACT_APP_API_URL}/oauth2/authorization/kakao`}>
+                <a href={`${import.meta.env.VITE_APP_API_URL}/oauth2/authorization/kakao`}>
                   <i className="kakao-i">
                     <img src={"/img/kko.png"} alt="카카오 로그인 이미지"></img>
                   </i>

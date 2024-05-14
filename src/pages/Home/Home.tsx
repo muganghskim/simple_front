@@ -12,6 +12,7 @@ const features = [
 ]
 
 const Home: React.FC = () => {
+  
   return (
     <>
       <Header></Header>

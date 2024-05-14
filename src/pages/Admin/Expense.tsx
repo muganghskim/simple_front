@@ -27,7 +27,7 @@ export default function Expense() {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/admin/expenses/create`,
+        `${import.meta.env.VITE_APP_API_URL}/admin/expenses/create`,
         data,
         {
           headers: {

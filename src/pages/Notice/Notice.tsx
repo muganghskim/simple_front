@@ -70,7 +70,7 @@ export default function Notice() {
         }
       };
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/notice/all`,
+        `${import.meta.env.VITE_APP_API_URL}/api/notice/all`,
         params
       );
 

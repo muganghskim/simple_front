@@ -106,7 +106,7 @@ export default function ProductDetail() {
   useEffect(() => {
     const getProduct = async () => {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/products/${id}`
+        `${import.meta.env.VITE_APP_API_URL}/api/products/${id}`
       );
       setProduct(response.data);
     };
@@ -121,7 +121,7 @@ export default function ProductDetail() {
 
   const getCart = async () => {
     const responseCart = await axios.get(
-      `${process.env.REACT_APP_API_URL}/api/cart/${productData.userEmail}`,
+      `${import.meta.env.VITE_APP_API_URL}/api/cart/${productData.userEmail}`,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -133,7 +133,7 @@ export default function ProductDetail() {
 
   const handleCreateItem = async () => {
     const responseSave = await axios.post(
-      `${process.env.REACT_APP_API_URL}/api/cart/create`,
+      `${import.meta.env.VITE_APP_API_URL}/api/cart/create`,
       productData,
       {
         headers: {
