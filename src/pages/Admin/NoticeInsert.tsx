@@ -20,6 +20,7 @@ export default function NoticeInsert() {
   const isAdmin = localStorage.getItem("isAdmin");
 
   const handleSubmit = async (event: any) => {
+    
     event.preventDefault();
 
     const formData = new FormData(event.target);
