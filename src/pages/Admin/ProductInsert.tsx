@@ -38,7 +38,7 @@ export default function ProductInsert() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8096/admin/registerProduct",
+        `${process.env.REACT_APP_API_URL}/admin/registerProduct`,
         formData,
         {
           headers: {

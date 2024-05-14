@@ -73,7 +73,7 @@ export default function Cart(props: any) {
   const handleRemoveItem = async (updateCart: UpdateCart) => {
     console.log(updateCart);
     const responseRemove = await axios.post(
-      "http://localhost:8096/api/cart/remove",
+      `${process.env.REACT_APP_API_URL}/api/cart/remove`,
       updateCart,
         {
           headers: {
@@ -88,7 +88,7 @@ export default function Cart(props: any) {
 
   const getCart = async () => {
     const responseCart = await axios.get(
-      `http://localhost:8096/api/cart/${productData.userEmail}`
+      `${process.env.REACT_APP_API_URL}/api/cart/${productData.userEmail}`
       ,
         {
           headers: {

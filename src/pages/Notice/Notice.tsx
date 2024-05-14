@@ -70,7 +70,7 @@ export default function Notice() {
         }
       };
       const response = await axios.get(
-        `http://localhost:8096/api/notice/all`,
+        `${process.env.REACT_APP_API_URL}/api/notice/all`,
         params
       );
 

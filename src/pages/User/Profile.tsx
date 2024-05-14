@@ -70,7 +70,7 @@ export default function Profile() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8096/api//profile/update",
+        `${process.env.REACT_APP_API_URL}/api//profile/update`,
         formData,
         {
           headers: {
@@ -100,7 +100,7 @@ export default function Profile() {
     
     try {
       const response = await axios.post(
-        "http://localhost:8096/api/support/add",
+        `${process.env.REACT_APP_API_URL}/api/support/add`,
         data,
         {
           headers: {
@@ -123,7 +123,7 @@ export default function Profile() {
   const getSupport = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8096/api/support/all/${profileData.userEmail}`,
+        `${process.env.REACT_APP_API_URL}/api/support/all/${profileData.userEmail}`,
         {
           headers: {
             Authorization: `Bearer ${token}`

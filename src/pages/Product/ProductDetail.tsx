@@ -106,7 +106,7 @@ export default function ProductDetail() {
   useEffect(() => {
     const getProduct = async () => {
       const response = await axios.get(
-        `http://localhost:8096/api/products/${id}`
+        `${process.env.REACT_APP_API_URL}/api/products/${id}`
       );
       setProduct(response.data);
     };
@@ -121,7 +121,7 @@ export default function ProductDetail() {
 
   const getCart = async () => {
     const responseCart = await axios.get(
-      `http://localhost:8096/api/cart/${productData.userEmail}`,
+      `${process.env.REACT_APP_API_URL}/api/cart/${productData.userEmail}`,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -133,7 +133,7 @@ export default function ProductDetail() {
 
   const handleCreateItem = async () => {
     const responseSave = await axios.post(
-      "http://localhost:8096/api/cart/create",
+      `${process.env.REACT_APP_API_URL}/api/cart/create`,
       productData,
       {
         headers: {

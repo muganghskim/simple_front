@@ -28,7 +28,7 @@ export default function NoticeInsert() {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://localhost:8096/api/admin/noticeAdd",
+        `${process.env.REACT_APP_API_URL}/api/admin/noticeAdd`,
         data,
         {
           headers: {

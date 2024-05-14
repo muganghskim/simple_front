@@ -45,7 +45,7 @@ export default function Order() {
       // UI에서 사용자에게 표시하는 페이지 번호는 1부터 시작할 수 있으므로
       // 요청을 보낼 때는 페이지 번호에서 1을 빼줘야 할 수도 있습니다.
       const response = await axios.get(
-        `http://localhost:8096/api/admin/orderItemAll`
+        `${process.env.REACT_APP_API_URL}/api/admin/orderItemAll`
         , {
           params: { // 여기에 쿼리 파라미터들을 넣어줘야 합니다.
             page: page, // 또는 `pageNumber: page - 1` 이 필요한 경우
@@ -87,7 +87,7 @@ export default function Order() {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://localhost:8096/api/admin/orderItemUpdate",
+        `${process.env.REACT_APP_API_URL}/api/admin/orderItemUpdate`,
         data,
         {
           headers: {

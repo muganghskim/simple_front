@@ -77,7 +77,7 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
     console.log("userAddress", userAddress);
     const handleCreateAddress = async () => {
       const responseSave = await axios.post(
-        "http://localhost:8096/api/delivery/add",
+        `${process.env.REACT_APP_API_URL}/api/delivery/add`,
         userAddress,
         {
           headers: {
@@ -95,7 +95,7 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
     handleCreateAddress();
     
     // axios
-    //   .post("http://localhost:8096/api/delivery/add", userAddress)
+    //   .post(`${process.env.REACT_APP_API_URL}/api/delivery/add`, userAddress)
     //   .then((response) => {
     //     console.log("User address added successfully.");
     //     // 추가적인 처리가 필요한 경우 여기에 작성

@@ -38,7 +38,7 @@ export default function Inven() {
       // 요청을 보낼 때는 페이지 번호에서 1을 빼줘야 할 수도 있습니다.
 
       const response = await axios.get(
-        `http://localhost:8096/admin/inven/all`
+        `${process.env.REACT_APP_API_URL}/admin/inven/all`
         , {
           params: { // 여기에 쿼리 파라미터들을 넣어줘야 합니다.
             page: page, // 또는 `pageNumber: page - 1` 이 필요한 경우

@@ -18,7 +18,7 @@ export default function SignIn() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8096/api/login",
+        `${process.env.REACT_APP_API_URL}/api/login`,
         data
       );
       const { username, email, img, token, refreshToken } = response.data;
@@ -144,14 +144,14 @@ export default function SignIn() {
           <div className="mt-4 flex justify-center">
             <ul className="flex w-full justify-around">
               <li>
-                <a href="http://localhost:8096/oauth2/authorization/google">
+                <a href={`${process.env.REACT_APP_API_URL}/oauth2/authorization/google`}>
                   <i className="google-i">
                     <img src={"/img/google.png"} alt="구글 로그인 이미지"></img>
                   </i>
                 </a>
               </li>
               <li>
-                <a href="http://localhost:8096/oauth2/authorization/naver">
+                <a href={`${process.env.REACT_APP_API_URL}/oauth2/authorization/naver`}>
                   <i className="naver-i">
                     <img
                       src={"/img/naver.png"}
@@ -161,7 +161,7 @@ export default function SignIn() {
                 </a>
               </li>
               <li>
-                <a href="http://localhost:8096/oauth2/authorization/kakao">
+                <a href={`${process.env.REACT_APP_API_URL}/oauth2/authorization/kakao`}>
                   <i className="kakao-i">
                     <img src={"/img/kko.png"} alt="카카오 로그인 이미지"></img>
                   </i>

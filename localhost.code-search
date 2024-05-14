@@ -1,0 +1,186 @@
+# Query: localhost
+# Including: ./src
+# ContextLines: 1
+
+40 results - 21 files
+
+src/pages/Admin/AdminLogin.tsx:
+  28        const response = await axios.get(
+  29:         `${process.env.REACT_APP_API_URL}/api/admin/login`,
+  30          {
+
+src/pages/Admin/CategoryInsert.tsx:
+  18        const response = await axios.post(
+  19:         `${process.env.REACT_APP_API_URL}/admin/registerCategory`,
+  20          data,
+
+src/pages/Admin/Expense.tsx:
+  29        const response = await axios.post(
+  30:         `${process.env.REACT_APP_API_URL}/admin/expenses/create`,
+  31          data,
+
+src/pages/Admin/Inven.tsx:
+  40        const response = await axios.get(
+  41:         `${process.env.REACT_APP_API_URL}/admin/inven/all`
+  42          , {
+
+src/pages/Admin/NoticeInsert.tsx:
+  30        const response = await axios.post(
+  31:         `${process.env.REACT_APP_API_URL}/api/admin/noticeAdd`,
+  32          data,
+
+src/pages/Admin/Order.tsx:
+  47        const response = await axios.get(
+  48:         `${process.env.REACT_APP_API_URL}/api/admin/orderItemAll`
+  49          , {
+
+  89        const response = await axios.post(
+  90:         `${process.env.REACT_APP_API_URL}/api/admin/orderItemUpdate`,
+  91          data,
+
+src/pages/Admin/ProductInsert.tsx:
+  40        const response = await axios.post(
+  41:         `${process.env.REACT_APP_API_URL}/admin/registerProduct`,
+  42          formData,
+
+src/pages/Admin/Profit.tsx:
+   96      try {
+   97:       const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/profit/data`,{
+   98          headers: { // 헤더는 여기에
+
+  117        console.log("page", page);
+  118:       const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/all`, {
+  119          params: { // 여기에 쿼리 파라미터들을 넣어줘야 합니다.
+
+  149        const response = await axios.get(
+  150:         `${process.env.REACT_APP_API_URL}/admin/month/${selectedYear}/${selectedMonth}`
+  151          , {
+
+  186        const response = await axios.get(
+  187:         `${process.env.REACT_APP_API_URL}/admin/day/${year}/${month}/${day}`
+  188          , {
+
+src/pages/Admin/Support.tsx:
+  43        const response = await axios.get(
+  44:         `${process.env.REACT_APP_API_URL}/api/admin/supportAll`
+  45          , {
+
+  85        const response = await axios.post(
+  86:         `${process.env.REACT_APP_API_URL}/api/admin/supportUpdate`,
+  87          data,
+
+src/pages/Common/Header.tsx:
+  56      try {
+  57:       await axios.post(`${process.env.REACT_APP_API_URL}/api/logout`);
+  58  
+
+src/pages/Notice/Notice.tsx:
+  72        const response = await axios.get(
+  73:         `${process.env.REACT_APP_API_URL}/api/notice/all`,
+  74          params
+
+src/pages/Product/Addr.tsx:
+  79        const responseSave = await axios.post(
+  80:         `${process.env.REACT_APP_API_URL}/api/delivery/add`,
+  81          userAddress,
+
+  97      // axios
+  98:     //   .post("http://localhost:8096/api/delivery/add", userAddress)
+  99      //   .then((response) => {
+
+src/pages/Product/Cart.tsx:
+  75      const responseRemove = await axios.post(
+  76:       `${process.env.REACT_APP_API_URL}/api/cart/remove`,
+  77        updateCart,
+
+  90      const responseCart = await axios.get(
+  91:       `${process.env.REACT_APP_API_URL}/api/cart/${productData.userEmail}`
+  92        ,
+
+src/pages/Product/Delivery.tsx:
+  44        const response = await axios.get(
+  45:         `${process.env.REACT_APP_API_URL}/api/delivery/${deliveryData.userEmail}`
+  46          ,
+
+  62        const response = await axios.get(
+  63:         `${process.env.REACT_APP_API_URL}/api/delivery/${deliveryData.userEmail}`
+  64          ,
+
+  94      try {
+  95:       const response = await axios.delete(`${process.env.REACT_APP_API_URL}/api/delivery/${deliverId}`,
+  96        {
+
+src/pages/Product/IamportPayments.tsx:
+  271      axios
+  272:       .post(`${process.env.REACT_APP_API_URL}/api/orderItem/create`, orderItemData,
+  273        {
+
+  301        axios
+  302:         .post(`${process.env.REACT_APP_API_URL}/api/transaction/create`, transactionData,
+  303          {
+
+src/pages/Product/Product.tsx:
+  62      const getAllProducts = async () => {
+  63:       const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/products`);
+  64        setProducts(response.data);
+
+src/pages/Product/ProductDetail.tsx:
+  108        const response = await axios.get(
+  109:         `${process.env.REACT_APP_API_URL}/api/products/${id}`
+  110        );
+
+  123      const responseCart = await axios.get(
+  124:       `${process.env.REACT_APP_API_URL}/api/cart/${productData.userEmail}`,
+  125        {
+
+  135      const responseSave = await axios.post(
+  136:       `${process.env.REACT_APP_API_URL}/api/cart/create`,
+  137        productData,
+
+src/pages/User/OrderView.tsx:
+  47        const response = await axios.get(
+  48:         `${process.env.REACT_APP_API_URL}/api/orderItem/all/${profileData.userEmail}`,
+  49          {
+
+src/pages/User/Profile.tsx:
+   72        const response = await axios.post(
+   73:         `${process.env.REACT_APP_API_URL}/api//profile/update`,
+   74          formData,
+
+  102        const response = await axios.post(
+  103:         `${process.env.REACT_APP_API_URL}/api/support/add`,
+  104          data,
+
+  125        const response = await axios.get(
+  126:         `${process.env.REACT_APP_API_URL}/api/support/all/${profileData.userEmail}`,
+  127          {
+
+src/pages/User/SignIn.tsx:
+   20        const response = await axios.post(
+   21:         `${process.env.REACT_APP_API_URL}/api/login`,
+   22          data
+
+  146                <li>
+  147:                 <a href={`${process.env.REACT_APP_API_URL}/oauth2/authorization/google`}>
+  148                    <i className="google-i">
+
+  153                <li>
+  154:                 <a href={`${process.env.REACT_APP_API_URL}/oauth2/authorization/naver`}>
+  155                    <i className="naver-i">
+
+  163                <li>
+  164:                 <a href={`${process.env.REACT_APP_API_URL}/oauth2/authorization/kakao`}>
+  165                    <i className="kakao-i">
+
+src/pages/User/SignUp.tsx:
+  34        const response = await axios.post(
+  35:         `${process.env.REACT_APP_API_URL}/api/signup`,
+  36          data
+
+  74      axios
+  75:       .post(`${process.env.REACT_APP_API_URL}/api/send-verification-email`, { email })
+  76        .then((response) => {
+
+  97      axios
+  98:       .post(`${process.env.REACT_APP_API_URL}/api/verify-email`, { email, code })
+  99        .then((response) => {

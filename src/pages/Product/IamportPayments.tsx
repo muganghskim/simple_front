@@ -269,7 +269,7 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
     }));
 
     axios
-      .post("http://localhost:8096/api/orderItem/create", orderItemData,
+      .post(`${process.env.REACT_APP_API_URL}/api/orderItem/create`, orderItemData,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -299,7 +299,7 @@ const IamportPayments: React.FC<IamportPaymentProps> = ({ delivery, pg }) => {
       console.log("transactionData", transactionData);
 
       axios
-        .post("http://localhost:8096/api/transaction/create", transactionData,
+        .post(`${process.env.REACT_APP_API_URL}/api/transaction/create`, transactionData,
         {
           headers: {
             Authorization: `Bearer ${token}`

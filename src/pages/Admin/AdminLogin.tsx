@@ -26,7 +26,7 @@ export default function Admin() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:8096/api/admin/login",
+        `${process.env.REACT_APP_API_URL}/api/admin/login`,
         {
           headers: {
             Authorization: `Bearer ${token}`

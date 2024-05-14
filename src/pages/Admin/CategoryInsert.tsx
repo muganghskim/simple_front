@@ -16,7 +16,7 @@ export default function CategoryInsert() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8096/admin/registerCategory",
+        `${process.env.REACT_APP_API_URL}/admin/registerCategory`,
         data,
         {
           headers: {

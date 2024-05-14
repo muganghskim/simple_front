@@ -94,7 +94,7 @@ export default function Profit() {
   const fetchProfitData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:8096/admin/profit/data`,{
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/profit/data`,{
         headers: { // 헤더는 여기에
           Authorization: `Bearer ${token}`
         }
@@ -115,7 +115,7 @@ export default function Profit() {
       // UI에서 사용자에게 표시하는 페이지 번호는 1부터 시작할 수 있으므로
       // 요청을 보낼 때는 페이지 번호에서 1을 빼줘야 할 수도 있습니다.
       console.log("page", page);
-      const response = await axios.get(`http://localhost:8096/admin/all`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/all`, {
         params: { // 여기에 쿼리 파라미터들을 넣어줘야 합니다.
           page: page, // 또는 `pageNumber: page - 1` 이 필요한 경우
           size: pageSize,
@@ -147,7 +147,7 @@ export default function Profit() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:8096/admin/month/${selectedYear}/${selectedMonth}`
+        `${process.env.REACT_APP_API_URL}/admin/month/${selectedYear}/${selectedMonth}`
         , {
           params: { // 여기에 쿼리 파라미터들을 넣어줘야 합니다.
             page: mpage, // 또는 `pageNumber: page - 1` 이 필요한 경우
@@ -184,7 +184,7 @@ export default function Profit() {
     try {
      
       const response = await axios.get(
-        `http://localhost:8096/admin/day/${year}/${month}/${day}`
+        `${process.env.REACT_APP_API_URL}/admin/day/${year}/${month}/${day}`
         , {
           params: { // 여기에 쿼리 파라미터들을 넣어줘야 합니다.
             page: dpage, // 또는 `pageNumber: page - 1` 이 필요한 경우
