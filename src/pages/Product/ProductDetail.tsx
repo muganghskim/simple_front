@@ -151,11 +151,14 @@ export default function ProductDetail() {
       // 추가적으로 로그인 페이지로 리다이렉트할 수 있습니다.
       window.location.href = "/signin";
     }
-    await handleCreateItem();
-    // 아이템 추가가 성공적으로 완료된 후 UI 상태 업데이트
-    setOpen((prevOpen) => !prevOpen);
-    // 장바구니 데이터 업데이트를 위한 함수 호출
-    getCart();
+    try {
+      await handleCreateItem(); // 아이템 추가가 성공적으로 완료된 후 UI 상태 업데이트
+      await getCart(); // 이렇게 변경하면, API 요청이 완료된 후 상태 업데이트가 순차적으로 이루어져 모달이 열리지 않는 문제를 해결할 수 있습니다.
+      setOpen(true); // 모달을 열기 위해 상태를 true로 설정
+    } catch (error) {
+      console.error("Failed to handle cart click:", error);
+    }
+    
   };
   
   if (!product) {
@@ -275,7 +278,7 @@ export default function ProductDetail() {
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
               <p className="text-3xl tracking-tight text-gray-900">
-                {product.pdPrice}
+                가격: {product.pdPrice} 원
               </p>
 
               {/* Reviews */}

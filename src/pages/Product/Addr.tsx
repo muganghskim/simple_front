@@ -17,7 +17,6 @@ interface AddrProps {
 }
 
 const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
-
   const userYn = localStorage.getItem("email");
   const token = localStorage.getItem("token");
 
@@ -34,8 +33,7 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
 
   useEffect(() => {
     const script = document.createElement("script");
-    script.src =
-      "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+    script.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
     script.async = true;
     document.body.appendChild(script);
 
@@ -67,47 +65,36 @@ const Addr: React.FC<AddrProps> = ({ onAddressAdded }) => {
   };
 
   const addUserAddress = async () => {
-
     // 필수 필드가 비어 있는지 검사
     if (!userAddress.userAddress1 || !userAddress.userAddress2 || !userAddress.userAddress3) {
       window.alert("배송지 정보를 넣어주세요");
-      // 필수 필드가 비어 있으면, 여기서 함수 실행을 중단
-      return;
+      return; // 필수 필드가 비어 있으면 함수 실행 중단
     }
     console.log("userAddress", userAddress);
-    const handleCreateAddress = async () => {
-      const responseSave = await axios.post(
-        `${import.meta.env.VITE_APP_API_URL}/api/delivery/add`,
-        userAddress,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-   
-      );
+    try {
+      await handleCreateAddress();
       console.log("User address added successfully.");
-    // 주소 추가 완료 후 onAddressAdded 콜백 호출
-    onAddressAdded();
+      onAddressAdded(); // 주소 추가 완료 후 onAddressAdded 콜백 호출
+    } catch (error) {
+      console.error("Failed to add user address:", error);
+    }
+  };
 
-    };
-    
-    handleCreateAddress();
-    
-    // axios
-    //   .post(`${process.env.REACT_APP_API_URL}/api/delivery/add`, userAddress)
-    //   .then((response) => {
-    //     console.log("User address added successfully.");
-    //     // 추가적인 처리가 필요한 경우 여기에 작성
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error adding user address:", error);
-    //   });
+  const handleCreateAddress = async () => {
+    const responseSave = await axios.post(
+      `${import.meta.env.VITE_APP_API_URL}/api/delivery/add`,
+      userAddress,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
   };
 
   return (
     <>
-      <div className="sm:ml-64 2xl:ml-32 mt-20 space-y-12 pr-12">
+      <div className="sm:ml-64 2xl:ml-42 mt-20 bg-white">
         <div className="border-b border-gray-900/10 pb-12">
           <button
             className="mt-8 text-base font-semibold leading-7 text-gray-900"
