@@ -55,6 +55,8 @@ export default function OrderView() {
       setOrder(response.data);
     } catch (error: any) {
       console.error("Error :", error.message);
+    } finally {
+      setLoading(false); // 데이터 로드가 완료된 후 로딩 상태 업데이트
     }
   }
 
@@ -63,6 +65,7 @@ export default function OrderView() {
       <Header></Header>
       <div className="sm:ml-64 2xl:ml-32 mt-20 space-y-12 pr-12">
         <div className="mx-auto px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8 border-b border-gray-900/10 pb-12">
+        <h2 className="mt-10 text-base font-semibold leading-7 text-gray-900">주문 내역</h2>
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 {/* 데이터 로딩 및 테이블 렌더링 */}
                 {loading ? (
