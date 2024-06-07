@@ -173,7 +173,7 @@ export default function SignUp() {
                   <div className="relative w-20 h-20 border-4 border-t-4 border-gray-200 rounded-full animate-spin"></div>
                 </div>
               )}
-              {error && <div>Error: Failed to send verification email</div>}
+              {error && <div>인증 코드를 받을 이메일을 입력해 주세요.</div>}
               {show && (
                 <div className="fixed inset-0 z-10 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
                   <div className="relative w-auto max-w-md p-6 my-8 mx-auto bg-white rounded-lg shadow-lg">
@@ -185,7 +185,7 @@ export default function SignUp() {
                     <div className="mt-4">
                       <input
                         type="text"
-                        placeholder="Enter verification code"
+                        placeholder="6자리 인증 코드 입력"
                         value={code}
                         onChange={handleEmailCodeChange}
                       />

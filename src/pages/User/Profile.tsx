@@ -42,7 +42,7 @@ export default function Profile() {
 
   // "변경" 버튼 클릭 이벤트 핸들러
   const handleButtonClick = () => {
-    document.getElementById('photo')?.click();
+    document.getElementById('file')?.click();
   };
 
   // 파일 입력 변경 이벤트 핸들러

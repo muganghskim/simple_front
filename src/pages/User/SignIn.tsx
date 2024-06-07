@@ -144,13 +144,13 @@ export default function SignIn() {
 
           <div className="mt-4 flex justify-center">
             <ul className="flex w-full justify-around">
-              <li>
+              {/* <li>
                 <a href={`${import.meta.env.VITE_APP_API_URL}/oauth2/authorization/google`}>
                   <i className="google-i">
                     <img src={"/img/google.png"} alt="구글 로그인 이미지"></img>
                   </i>
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a href={`${import.meta.env.VITE_APP_API_URL}/oauth2/authorization/naver`}>
                   <i className="naver-i">

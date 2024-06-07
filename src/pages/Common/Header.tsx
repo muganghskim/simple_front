@@ -51,6 +51,7 @@ const Header: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
   console.log("is login?", isLoggedIn);
   const img = localStorage.getItem("img");
+  console.log("img 값이?", typeof(img));
   // const [isSignIn, setIsSignIn] = useState(false);
   const logout = async () => {
     try {
@@ -121,7 +122,7 @@ const Header: React.FC = () => {
                             <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                               <span className="absolute -inset-1.5" />
                               <span className="sr-only">Open user menu</span>
-                              {img ? (
+                              {img && img.trim() !== "" && img !== "null"  ? (
                                 <img src={img} alt="유저 프로필 사진" className="h-8 w-8 rounded-full" />
                               ) : (
                                 <UserCircleIcon className="h-8 w-8 rounded-full text-gray-300" aria-hidden="true" />
